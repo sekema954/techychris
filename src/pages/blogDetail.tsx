@@ -44,7 +44,7 @@ const BlogDetail = () => {
     };
   
     try {
-      const res = await fetch("http://localhost:3000/api/post/comments", {
+      const res = await fetch("https://techychris-d43416ccb998.herokuapp.com/api/post/comments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
