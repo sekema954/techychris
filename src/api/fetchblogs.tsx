@@ -45,7 +45,7 @@ const useFetchBlogs = () => {
   const [error, setError] = useState<string | null>(null);
 
   const fetchBlogs = async () => {
-    const url = "http://localhost:3000/api/blogs";
+    const url = "https://techychris-d43416ccb998.herokuapp.com/api/blogs";
     try {
       const response = await fetch(url, {
         method: "GET",

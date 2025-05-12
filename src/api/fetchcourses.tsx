@@ -19,7 +19,7 @@ const useFetchCourses = () => {
     const [isLoading, setLoading] = useState(false);
     useEffect(()=>{
         const fetchCourses = async () => {
-            const url = "http://localhost:3000/api/courses";
+            const url = "https://techychris-d43416ccb998.herokuapp.com/api/courses";
             const options = {
                 method:"GET",
                 headers:{
