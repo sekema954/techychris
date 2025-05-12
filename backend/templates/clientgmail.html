@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to TechyChris</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @keyframes glow {
+      0% { filter: drop-shadow(0 0 0px #0ff); }
+      50% { filter: drop-shadow(0 0 8px #0ff); }
+      100% { filter: drop-shadow(0 0 0px #0ff); }
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #111827;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 1.5rem;
+      width: 100px;
+      animation: glow 2s infinite ease-in-out;
+    }
+
+    h2 {
+      text-align: center;
+      color: #0ff;
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: 1rem;
+      color: #cbd5e1;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+
+    .highlight {
+      color: #0ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://cdn-icons-png.flaticon.com/512/2791/2791314.png" alt="TechyChris Logo" class="logo">
+
+    <h2>Welcome to <span class="highlight">TechyChris</span>!</h2>
+    <p>Thank you for subscribing to our newsletter. You're now part of an exclusive tech-driven community where innovation meets style.</p>
+
+    <p>Expect regular updates on the latest developer tools, gadgets, futuristic gear, and tech insights that keep you ahead of the game.</p>
+
+    <p>Stay tuned for our latest drops and promotions.</p>
+
+    <p>See you in your inbox,<br>– The TechyChris Team</p>
+
+    <div class="footer">
+      You’re receiving this email because you subscribed at <strong>techychris.com</strong><br>
+      If this wasn’t you, you can ignore this message.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>New Subscriber Alert</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @keyframes glow {
+      0% { filter: drop-shadow(0 0 0px #00ffff); }
+      50% { filter: drop-shadow(0 0 10px #00ffff); }
+      100% { filter: drop-shadow(0 0 0px #00ffff); }
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+      color: #ffffff;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #1f2937;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,255,255,0.2);
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 1.5rem;
+      width: 90px;
+      animation: glow 2s infinite ease-in-out;
+    }
+
+    h2 {
+      text-align: center;
+      color: #0ff;
+      margin-bottom: 1rem;
+    }
+
+    .content {
+      text-align: center;
+      font-size: 1rem;
+      color: #d1d5db;
+    }
+
+    .email-box {
+      background-color: #374151;
+      color: #0ff;
+      font-weight: bold;
+      padding: 0.75rem;
+      margin: 1.5rem auto;
+      border-radius: 8px;
+      width: fit-content;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://cdn-icons-png.flaticon.com/512/2791/2791314.png" alt="TechyChris Logo" class="logo">
+
+    <h2>🚀 New Subscriber Alert</h2>
+
+    <div class="content">
+      <p>Heads up! A new user has joined the TechyChris newsletter.</p>
+      <p>Here’s the email:</p>
+      <div class="email-box">{{email}}</div>
+    </div>
+
+    <div class="footer">
+      This is an automated alert from <strong>TechyChris</strong>.
+    </div>
+  </div>
+</body>
+</html>

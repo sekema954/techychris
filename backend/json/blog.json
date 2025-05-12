@@ -1,0 +1,93 @@
+[
+  {
+    "id": "8f336e39-caab-4e78-a42e-4c0f76a50902",
+    "title": "Title of the blog goes here.",
+    "slug": "Slug is a second title for SEO",
+    "intro": "Developing backend applications can be challenging and require a significant investment of time and resources. In addition to mastery of programming languages, backend developers including junior developers must be familiar with a wide range of tools, their advantages and trade-offs. Developers also need to possess the ability to effectively design systems, understand business requirements, and adapt quickly to changing demands, especially during the early stages of product development.",
+    "middle_context": "Developing backend applications can be challenging and require a significant investment of time and resources. In addition to mastery of programming languages, backend developers including junior developers must be familiar with a wide range of tools, their advantages and trade-offs. Developers also need to possess the ability to effectively design systems, understand business requirements, and adapt quickly to changing demands, especially during the early stages of product development.",
+    "conclusion": "Developing backend applications can be challenging and require a significant investment of time and resources. In addition to mastery of programming languages, backend developers including junior developers must be familiar with a wide range of tools, their advantages and trade-offs. Developers also need to possess the ability to effectively design systems, understand business requirements, and adapt quickly to changing demands, especially during the early stages of product development.",
+    "content": "backend applications can be challenging and require a significant investment of time and resources. In addition to mastery of programming languages, backend developers including junior developers must be familiar with a wide range of tools, their advantages and trade-offs. Developers also need to possess the ability to effectively design systems, understand business requirements, and adapt quickly to changing demands, especially during the early stages of product development.",
+    "thumbnail": "https://www.elegantthemes.com/blog/wp-content/uploads/2018/11/shutterstock_1049564585-960.jpg",
+    "hero_image": "https://example.com/images/home-network-hero.jpg",
+    "categories": [
+      "keywords",
+      "categories",
+      "big words"
+    ],
+    "tags": [
+      "tag1",
+      "tag2",
+      "tag3",
+      "tag4",
+      "tag5"
+    ],
+    "creator": "Samuel Ekema"
+  },
+  {
+    "id": "56c6bf61-1f66-42d4-8515-f70ed3393912",
+    "title": "Why You Should Learn the MERN Stack in 2025",
+    "slug": "why-learn-mern-stack-2025",
+    "intro": "The web development landscape continues to evolve rapidly in 2025, but one stack remains consistently in demand: the MERN Stack — MongoDB, Express.js, React, and Node.js. If you're looking to build scalable full-stack applications, MERN is a powerful and modern choice.",
+    "middle_context": "🧠 Why Developers Love MERN\n1) Single Language (JavaScript) Across the Stack\nYou don’t need to learn separate languages for frontend and backend — JavaScript powers it all.\n\n2) Full Control Over the Application Logic\nUnlike CMS platforms or no-code tools, MERN gives you total flexibility and customizability.\n\n3)Massive Community Support\nFrom libraries and tutorials to job demand, the MERN stack ecosystem is mature and active.\n\n4) High Performance\nThanks to non-blocking I/O in Node.js and React’s virtual DOM, MERN applications are fast and efficient.",
+    "conclusion": "If you're aiming to build modern, scalable web applications — and want a skillset that opens doors in both backend and frontend development — the MERN Stack is one of the best investments you can make in 2025.",
+    "content": "In 2025, startups and enterprise companies alike are hiring full-stack MERN developers due to the stack's scalability and speed-to-market benefits. MERN is also popular in freelance and SaaS projects, making it a lucrative skill for solo developers.",
+    "thumbnail": "https://www.partbargain.com/wp-content/uploads/demo/placeholder.svg",
+    "hero_image": "https://www.partbargain.com/wp-content/uploads/demo/placeholder.svg",
+    "categories": [
+      "web development"
+    ],
+    "tags": [
+      "MERN",
+      "mongodb",
+      "expressjs",
+      "react",
+      "nodejs"
+    ],
+    "creator": "Samuel Ekema"
+  },
+  {
+    "id": "bbdf9560-52fe-4ab0-961c-9b3e15383cc1",
+    "title": "Test ",
+    "slug": "second title goes here",
+    "intro": "test intro",
+    "middle_context": "test middle",
+    "conclusion": "test",
+    "content": "test",
+    "thumbnail": "https://www.elegantthemes.com/blog/wp-content/uploads/2018/11/shutterstock_1049564585-960.jpg",
+    "hero_image": "https://example.com/images/home-network-hero.jpg",
+    "categories": [
+      "Tech",
+      "Web"
+    ],
+    "tags": [
+      "network",
+      "cables",
+      "DIY",
+      "putty",
+      "switch"
+    ],
+    "creator": "Admin"
+  },
+  {
+    "id": "ec369c6f-db56-4b1b-8184-a2888a3e1273",
+    "title": "Test blog title goes here",
+    "slug": "second title goes here",
+    "intro": "first content",
+    "middle_context": "middle content",
+    "conclusion": "conclusion",
+    "content": "whatever",
+    "thumbnail": "https://www.elegantthemes.com/blog/wp-content/uploads/2018/11/shutterstock_1049564585-960.jpg",
+    "hero_image": "https://example.com/images/home-network-hero.jpg",
+    "categories": [
+      "Technology",
+      "Innovation"
+    ],
+    "tags": [
+      "AI",
+      "Machine Learning",
+      "Future",
+      "Society"
+    ],
+    "creator": "admin"
+  }
+]
