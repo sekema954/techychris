@@ -1,5 +1,6 @@
 // Home page
 
+import { Contact } from "lucide-react"
 import Subscribe from "../components/subscribe"
 import About from "../sections/about"
 import VideoBackground from "../sections/animatedbackground"
@@ -14,6 +15,7 @@ const Home = () =>{
         <Quality_Services />
         <RecentBlogs />
         <Subscribe />
+        <Contact />
      </>
     )
 }
