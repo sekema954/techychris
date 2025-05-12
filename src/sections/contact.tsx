@@ -1,6 +1,6 @@
 //Contact 
 import { useState } from 'react';
-import image from '../assets/imagea/contact_image.png';
+import image from '../assets/images/contact_image.png';
 import Divider from '../components/divider';
 const Contact = () => {
     const [formData, setFormData] = useState({

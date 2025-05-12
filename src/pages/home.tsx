@@ -1,6 +1,6 @@
 // Home page
 
-import { Contact } from "lucide-react"
+import  Contact  from "../sections/contact"
 import Subscribe from "../components/subscribe"
 import About from "../sections/about"
 import VideoBackground from "../sections/animatedbackground"
