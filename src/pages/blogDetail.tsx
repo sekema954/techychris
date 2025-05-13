@@ -24,7 +24,7 @@ const BlogDetail = () => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/get/comments/?postId=${id}`);
+        const res = await fetch(`https://techychris-d43416ccb998.herokuapp.com/api/get/comments/?postId=${id}`);
         const data = await res.json();
         setComments(data);
       } catch (error) {

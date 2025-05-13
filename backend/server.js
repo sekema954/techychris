@@ -17,6 +17,7 @@ const getEmails = require('./routes/admin/getemails');
 const deleteSubscribers = require('../backend/routes/admin/deletesubscribers');
 const sendEmailToSubscribers = require('./routes/admin/sendemail');
 const postComments = require('./routes/user/comments');
+const sendContact = require('./routes/admin/contact');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -49,7 +50,7 @@ app.use('/api', adminLogin);
 app.use('/api', getEmails);
 app.use('/api', deleteSubscribers);
 app.use('/api', sendEmailToSubscribers);
-
+app.use('/api', sendContact);
 
 
 

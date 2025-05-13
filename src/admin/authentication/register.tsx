@@ -21,7 +21,7 @@ const AdminRegister = () => {
     e.preventDefault();
   
     try {
-      const res = await fetch("http://localhost:3000/api/admin/register", {
+      const res = await fetch("https://techychris-d43416ccb998.herokuapp.com/api/admin/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

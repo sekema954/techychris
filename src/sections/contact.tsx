@@ -1,57 +1,120 @@
-//Contact 
 import { useState } from 'react';
 import image from '../assets/images/contact_image.png';
 import Divider from '../components/divider';
+
 const Contact = () => {
     const [formData, setFormData] = useState({
         firstname: "",
-        lastname:"",
-        email:"",
-        message:"",
+        lastname: "",
+        email: "",
+        message: "",
     });
 
-    const handleChange = (e:any) => {
-        const {name, value} = e.target;
-        setFormData((prev=>({
+    const handleChange = (e: any) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({
             ...prev,
-            [name]:value,
-        })));
+            [name]: value,
+        }));
     };
 
-
-    const handleSubmit = (e:any) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
-    }
-    return(
-        <section className="bg-[#3E3A59] text-white">
-            <header className="flex flex-col items-center justify-center text-center">
-                <h1 className="text-[50px]">CONTACT</h1>
-                <p className="lg:w-[600px]">Thanks for your interest in my IT Courses and guides. If you’d like to get in touch with me, please contact me on social media or complete the following form.</p>
+      
+        try {
+          const response = await fetch('http://localhost:3000/api/send-contact', { 
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          });
+      
+          const data = await response.json();
+      
+          if (response.ok) {
+            alert('Email sent successfully!');
+            setFormData({
+              firstname: '',
+              lastname: '',
+              email: '',
+              message: '',
+            });
+          } else {
+            alert(`Failed to send email: ${data.message}`);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Something went wrong. Please try again later.');
+        }
+      };
+      
+
+    return (
+        <section className="bg-[#3E3A59] text-white py-12 px-4">
+            <header className="text-center mb-12">
+                <h1 className="text-4xl lg:text-5xl font-bold mb-4">CONTACT</h1>
+                <p className="max-w-xl mx-auto text-lg">
+                    Thanks for your interest in my IT Courses and guides. If you’d like to get in touch with me, please contact me on social media or complete the following form.
+                </p>
             </header>
-            {/**lsyout grid */}
-            <div className="grid lg:grid-cols-[60%_40%] grid-rows-auto w-full h-full py-16 px-5 gap-2">
-                {/**grid layout 1  */}
-                <div className='w-full h-auto border'>
-                    <img className='w-full h-full' src={image} alt="" />
+
+            <div className="grid lg:grid-cols-2 gap-10 max-w-6xl mx-auto items-center">
+                {/* Image section */}
+                <div className="w-full max-h-[400px] overflow-hidden rounded-2xl shadow-lg">
+                    <img className="w-full h-full object-cover" src={image} alt="Contact" />
                 </div>
-                {/***grid layout 2 */}
-                <form onSubmit={handleSubmit} className='border relative flex flex-col py-16 px-10 gap-6 bg-[#171723]'>
+
+                {/* Form section */}
+                <form
+                    onSubmit={handleSubmit}
+                    className="bg-[#171723] p-8 rounded-2xl shadow-lg flex flex-col gap-6"
+                >
                     <Divider />
-                    {[
-                        {id:1, placeholder:'First Name', type:'text', value:formData.firstname,},
-                        {id:2, placeholder:'Last Name', type:'text', value:formData.lastname},
-                        {id:3, placeholder:'Email', type:'text', value:formData.email},
-                    ].map((form)=>(
-                        <input onChange={handleChange} className='border flex rounded-2xl h-[65px] bg-white text-black px-6' type={form.type} name={form.placeholder} value={form.value} placeholder={form.placeholder} id="" />
-                    ))}
-                    <textarea rows={6} className='bg-white text-black px-6 py-6' name="message" id="message" placeholder='How can i help you?'></textarea>
-                    <button className='border border-white h-[55px] transition-all duration-[1s] hover:bg-[#847FAD]'>
+                    <div className="grid md:grid-cols-2 gap-4">
+                        <input
+                            onChange={handleChange}
+                            type="text"
+                            name="firstname"
+                            value={formData.firstname}
+                            placeholder="First Name"
+                            className="rounded-xl h-[55px] px-4 text-black bg-white"
+                        />
+                        <input
+                            onChange={handleChange}
+                            type="text"
+                            name="lastname"
+                            value={formData.lastname}
+                            placeholder="Last Name"
+                            className="rounded-xl h-[55px] px-4 text-black bg-white"
+                        />
+                    </div>
+                    <input
+                        onChange={handleChange}
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        placeholder="Email"
+                        className="rounded-xl h-[55px] px-4 text-black bg-white"
+                    />
+                    <textarea
+                        onChange={handleChange}
+                        name="message"
+                        value={formData.message}
+                        rows={5}
+                        placeholder="How can I help you?"
+                        className="rounded-xl px-4 py-3 text-black bg-white resize-none"
+                    ></textarea>
+                    <button
+                        type="submit"
+                        className="h-[50px] bg-[#847FAD] hover:bg-[#6c68a4] transition duration-300 rounded-xl text-white font-medium"
+                    >
                         Submit
                     </button>
                 </form>
             </div>
         </section>
-    )
-}
+    );
+};
 
-export default Contact
+export default Contact;
