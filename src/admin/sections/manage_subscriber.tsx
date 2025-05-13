@@ -17,7 +17,7 @@ const Manage_Subscribers = () => {
   useEffect(() => {
     const fetchSubscribers = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/get/emails");
+        const response = await fetch("https://techychris-d43416ccb998.herokuapp.com/api/get/emails");
         const data = await response.json();
         setSubscribers(data.subscribers);
       } catch (error) {
@@ -32,7 +32,7 @@ const Manage_Subscribers = () => {
 
   const handleRemove = async (email: string, id: string) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/delete/email/${id}`, {
+      const response = await fetch(`https://techychris-d43416ccb998.herokuapp.com/api/delete/email/${id}`, {
         method: "DELETE",
       });
 
