@@ -1,9 +1,9 @@
 import image1 from '../assets/images/IMG_6694.jpeg'
-import image2 from '../assets/images/IMG_6694.jpeg'
+import image2 from '../assets/images/IMG_6689.jpg'
 import image3 from '../assets/images/IMG_6692.png';
 import image4 from '../assets/images/IMG_6691.jpeg';
 import image5 from '../assets/images/IMG_6690.jpeg';
-import image6 from '../assets/images/IMG_6694.jpeg'
+import image6 from '../assets/images/IMG_6695.jpg'
 //import image5 from '../assets/images/IMG_6689.PNG';
 
 import { Timeline } from "../components/ui/timeline";
