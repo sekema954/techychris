@@ -53,7 +53,7 @@ const Manage_Subscribers = () => {
 
   const sendEmailMessage = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/send/email", {
+      const res = await fetch("https://techychris-d43416ccb998.herokuapp.com/api/send/email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

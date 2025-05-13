@@ -38,13 +38,13 @@ const AdminBlogs = () => {
     try {
       let response;
       if (isEditing && editId) {
-        response = await fetch(`http://localhost:3000/api/blogs/${editId}`, {
+        response = await fetch(`https://techychris-d43416ccb998.herokuapp.com/api/blogs/${editId}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
       } else {
-        response = await fetch("http://localhost:3000/api/blogs", {
+        response = await fetch("https://techychris-d43416ccb998.herokuapp.com/api/blogs", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
@@ -66,7 +66,6 @@ const AdminBlogs = () => {
   };
 
   const handleEdit = (blog: any) => {
-    // Handle data population for form fields, ensuring array properties (tags, categories) are correctly converted to a string
     setFormData({
       title: blog.title || "",
       slug: blog.slug || "",
@@ -76,12 +75,11 @@ const AdminBlogs = () => {
       content: blog.content || "",
       thumbnail: blog.thumbnail || "",
       hero_image: blog.hero_image || "",
-      categories: blog.categories?.join(", ") || "", // Ensure categories are a comma-separated string
-      tags: blog.tags?.join(", ") || "", // Ensure tags are a comma-separated string
+      categories: blog.categories?.join(", ") || "", 
+      tags: blog.tags?.join(", ") || "",
       creator: blog.creator || "",
     });
   
-    // Set the editing state to true and the blog ID to edit
     setEditId(blog.id);
     setIsEditing(true);
   };
@@ -89,7 +87,7 @@ const AdminBlogs = () => {
 
   const handleDelete = async (id: string) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/blogs/${id}`, { method: "DELETE" });
+      const response = await fetch(`https://techychris-d43416ccb998.herokuapp.com/api/blogs/${id}`, { method: "DELETE" });
       if (!response.ok) {
         throw new Error(`Delete failed with status: ${response.status}`);
       }
