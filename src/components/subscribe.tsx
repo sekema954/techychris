@@ -1,7 +1,6 @@
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
-const siteKey = import.meta.env.VITE_SITE_KEY;
 
 const Subscribe = () => {
   const [email, setEmail] = useState("");
@@ -76,13 +75,13 @@ const Subscribe = () => {
           className="w-full px-5 py-3 rounded-xl text-black bg-white focus:outline-none focus:ring-2 focus:ring-[#CD9EFD]"
         />
 
-        {/* reCAPTCHA now below input */}
+        {/* reCAPTCHA now below input 
         <div className="w-full flex justify-center">
           <ReCAPTCHA
             sitekey={siteKey}
             onChange={(value) => setToken(value || "")}
           />
-        </div>
+        </div>*/}
 
         <button
           type="submit"
