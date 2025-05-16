@@ -31,7 +31,7 @@
     "jsonwebtoken": "^9.0.2",
     "jspdf": "^3.0.1",
     "lucide-react": "^0.507.0",
-    "mongoose": "^8.14.1",
+    "mongoose": "^8.14.3",
     "motion": "^12.9.4",
     "node-fetch": "^3.3.2",
     "nodemailer": "^7.0.2",
