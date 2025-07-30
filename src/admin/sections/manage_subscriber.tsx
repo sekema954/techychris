@@ -20,7 +20,7 @@ const Manage_Subscribers = () => {
   useEffect(() => {
     const fetchSubscribers = async () => {
       try {
-        const response = await fetch('https://techychris-e3f874ff6641.herokuapp.com/get/emails');
+        const response = await fetch('https://techychris-e3f874ff6641.herokuapp.com/api/get/emails');
         const data = await response.json();
         setSubscribers(data.subscribers);
       } catch (error) {
