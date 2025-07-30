@@ -48,13 +48,10 @@ const AdminBlogs = () => {
     setUploadingField(field);
 
     try {
-      const BASE_URL = import.meta.env.PROD
-      ? `http://localhost:3000/api/upload`
-      :'http://localhost:3000/api/upload';
       const formDataUpload = new FormData();
       formDataUpload.append("file", file);
 
-      const response = await fetch(BASE_URL, {
+      const response = await fetch('https://techychris-e3f874ff6641.herokuapp.com/api/upload', {
         method: "POST",
         body: formDataUpload,
       });
@@ -85,21 +82,15 @@ const AdminBlogs = () => {
     };
 
     try {
-      const BASE_URL = import.meta.env.PROD
-      ?`http://localhost:3000/api/blogs/${editId}`
-      :`http://localhost:3000/api/blogs/${editId}`;
       let response;
       if (isEditing && editId) {
-        response = await fetch(BASE_URL, {
+        response = await fetch(`https://techychris-e3f874ff6641.herokuapp.com/api/blogs/${editId}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
       } else {
-        const BASE_URL = import.meta.env.PROD
-        ?`http://localhost:3000/api/blogs`
-        :'http://localhost:3000/api/blogs'
-        response = await fetch(BASE_URL, {
+        response = await fetch('https://techychris-e3f874ff6641.herokuapp.com/api/blogs', {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
@@ -155,10 +146,7 @@ const AdminBlogs = () => {
 
 
     try {
-      const BASE_URL = import.meta.env.PROD
-      ? `http://localhost:3000/api/blogs/${id}`
-      :`http://localhost:3000/api/blogs/${id}`;
-      const response = await fetch(BASE_URL, {
+      const response = await fetch(`https://techychris-e3f874ff6641.herokuapp.com/api/blogs/${id}`, {
         method: "DELETE",
       });
       if (!response.ok) {
