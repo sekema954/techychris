@@ -55,7 +55,7 @@ const AboutPage = () => {
       title: "Join the Discord Community",
       description: "Connect with like-minded learners and receive support.",
       buttonText: "Join Discord",
-      link: "https://discord.com/channels/1397433141949366394/1397433142838562828",
+      link: "https://discord.gg/QgjVAsbQCH",
     },
   ];
 
