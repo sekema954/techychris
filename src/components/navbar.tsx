@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { UserCircle } from 'lucide-react';
-import { faDiscord, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import logo from '../assets/images/logo2.png';
 import { useLocation } from 'react-router-dom';
@@ -16,29 +15,9 @@ const Navbar = () => {
   const profileRef = useRef<HTMLDivElement>(null);
   const socialDropdownRef = useRef<HTMLDivElement>(null);
 
-  // Append Discord icon correctly
-  const socialsWithDiscord = [
-    ...Socials,
-    {
-      id: 'discord',
-      title: 'Discord',
-      icon: faDiscord,
-      link: 'https://discord.gg/QgjVAsbQCH',
-      backgroundColor: '#7289DA',
-    },
-    {
-      id:'instagram',
-      title:'Instagram',
-      icon:faInstagram,
-      link:'https://www.instagram.com/techychriss?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
-      backgroundColor: '#fa7e1e '
-
-    }
-  ];
-
   const visibleSocialCount = 2;
-  const visibleSocials = socialsWithDiscord.slice(0, visibleSocialCount);
-  const hiddenSocials = socialsWithDiscord.slice(visibleSocialCount);
+  const visibleSocials = Socials.slice(0, visibleSocialCount);
+  const hiddenSocials = Socials.slice(visibleSocialCount);
 
   // Handle sticky navbar on scroll
   useEffect(() => {
@@ -231,7 +210,7 @@ const Navbar = () => {
             </a>
           ))}
           <div className="flex gap-5 mt-4">
-            {socialsWithDiscord.map((icon) => (
+            {Socials.map((icon) => (
               <a
                 key={icon.id}
                 href={icon.link}
