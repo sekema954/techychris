@@ -20,7 +20,7 @@ const AdminLogin = () => {
 
   const handleSubmit = async (e: any) => {
     const BASE_URL = import.meta.env.PROD 
-    ? `${import.meta.env.VITE_HEROKU_URL}/api/admin/login`
+    ? `http://localhost:3000/api/admin/login`
     : 'http://localhost:3000/api/admin/login';
     e.preventDefault();
   

@@ -49,7 +49,7 @@ const AdminBlogs = () => {
 
     try {
       const BASE_URL = import.meta.env.PROD
-      ? `${import.meta.env.VITE_HEROKU_URL}/api/upload`
+      ? `http://localhost:3000/api/upload`
       :'http://localhost:3000/api/upload';
       const formDataUpload = new FormData();
       formDataUpload.append("file", file);
@@ -86,7 +86,7 @@ const AdminBlogs = () => {
 
     try {
       const BASE_URL = import.meta.env.PROD
-      ?`${import.meta.env.VITE_HEROKU_URL}/api/blogs/${editId}`
+      ?`http://localhost:3000/api/blogs/${editId}`
       :`http://localhost:3000/api/blogs/${editId}`;
       let response;
       if (isEditing && editId) {
@@ -97,7 +97,7 @@ const AdminBlogs = () => {
         });
       } else {
         const BASE_URL = import.meta.env.PROD
-        ?`${import.meta.env.VITE_HEROKU_URL}/api/blogs`
+        ?`http://localhost:3000/api/blogs`
         :'http://localhost:3000/api/blogs'
         response = await fetch(BASE_URL, {
           method: "POST",
@@ -156,7 +156,7 @@ const AdminBlogs = () => {
 
     try {
       const BASE_URL = import.meta.env.PROD
-      ? `${import.meta.env.VITE_HEROKU_URL}/api/blogs/${id}`
+      ? `http://localhost:3000/api/blogs/${id}`
       :`http://localhost:3000/api/blogs/${id}`;
       const response = await fetch(BASE_URL, {
         method: "DELETE",

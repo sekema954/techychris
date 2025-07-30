@@ -21,8 +21,8 @@ const Manage_Subscribers = () => {
     const fetchSubscribers = async () => {
       try {
         const BASE_URL = import.meta.env.PROD
-        ? `${import.meta.env.VITE_HEROKU_URL}/api/get/emails`
-        :" http://localhost:3000/api/get/emails"
+        ? `http://localhost:3000/api/get/emails`
+        :"http://localhost:3000/api/get/emails"
         const response = await fetch(BASE_URL);
         const data = await response.json();
         setSubscribers(data.subscribers);
@@ -39,7 +39,7 @@ const Manage_Subscribers = () => {
   const handleRemove = async (email: string, id: string) => {
     try {
       const BASE_URL = import.meta.env.PROD
-      ? `${import.meta.env.VITE_HEROKU_URL}/api/delete/email/${id}`
+      ? `http://localhost:3000/api/delete/email/${id}`
       : `http://localhost:3000/api/delete/email/${id}`;
       const response = await fetch(BASE_URL, {
         method: "DELETE",
@@ -78,7 +78,7 @@ const Manage_Subscribers = () => {
     const recipients = bulk ? selectedEmails : [messageEmail];
     try {
       const BASE_URL = import.meta.env.PROD
-      ? `${import.meta.env.VITE_HEROKU_URL}/api/send/email`
+      ? `http://localhost:3000/api/send/email`
       : "http://localhost:3000/api/send/email";
       const res = await fetch(BASE_URL, {
         method: "POST",
