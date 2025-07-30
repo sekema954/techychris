@@ -1,6 +1,6 @@
 // Frontend (React)
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import useFetchBlogs from "../api/fetchblogs";
 
 type CommentType = {
@@ -18,53 +18,7 @@ const BlogDetail = () => {
   const { id } = useParams();
   const post = blogs.find((item) => item.id === id);
 
-  const [commentText, setCommentText] = useState("");
-  const [comments, setComments] = useState<CommentType[]>([]);
 
-  useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const res = await fetch(`https://techychris-d43416ccb998.herokuapp.com/api/get/comments/?postId=${id}`);
-        const data = await res.json();
-        setComments(data);
-      } catch (error) {
-        console.error("Failed to load comments", error);
-      }
-    };
-    if (id) fetchComments();
-  }, [id]);
-
-  const handleAddComment = async () => {
-    if (!commentText.trim() || !id) return;
-  
-    const newComment = {
-      postId: id,
-      author: "Anonymous", // Replace with the logged-in user if available
-      content: commentText,
-    };
-  
-    try {
-      const res = await fetch("https://techychris-d43416ccb998.herokuapp.com/api/post/comments", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newComment),
-      });
-  
-      if (res.ok) {
-        const savedComment = await res.json();
-        setComments((prev) => [...prev, savedComment]);
-        setCommentText("");
-      } else {
-        const error = await res.json();
-        console.error(error);
-      }
-    } catch (error) {
-      console.error("Error posting comment", error);
-    }
-  };
-  
   if (isLoading) return <p className="text-white p-5">Loading...</p>;
   if (error) return <p className="text-white p-5">Failed to load blog data</p>;
   if (!post) return <p className="text-white p-5">Blog post not found</p>;
@@ -74,7 +28,6 @@ const BlogDetail = () => {
       <header className="flex flex-wrap gap-4 text-sm md:text-base mb-6">
         <span className="font-semibold">{post.creator}</span>
         <span>{post.published_date}</span>
-        <span>{comments.length} comments</span>
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-[70%_30%] gap-8">
@@ -91,53 +44,6 @@ const BlogDetail = () => {
             <p>{post.intro}</p>
             <p>{post.middle_context}</p>
             <p>{post.conclusion}</p>
-          </div>
-
-          <div className="mt-10">
-            <h3 className="text-2xl font-bold mb-4">Comments ({comments.length})</h3>
-
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleAddComment();
-              }}
-              className="flex flex-col gap-4 mb-6"
-            >
-              <label htmlFor="commentText" className="sr-only">Your Comment</label>
-              <textarea
-                id="commentText"
-                rows={4}
-                placeholder="Add a comment"
-                value={commentText}
-                onChange={(e) => setCommentText(e.target.value)}
-                className="bg-[#171723]/70 text-white px-4 py-3 rounded-md resize-none"
-              />
-              <button
-                type="submit"
-                disabled={!commentText.trim()}
-                className={`self-start ${!commentText.trim() ? 'bg-gray-500 cursor-not-allowed' : 'bg-[#171723] hover:bg-[#847FAD]'} transition-all duration-300 px-6 py-3 rounded-xl font-semibold`}
-              >
-                ADD A COMMENT
-              </button>
-            </form>
-
-            <div className="space-y-5">
-              {comments.map((comment) => (
-                <div
-                  key={comment.id}
-                  className="bg-[#000000]/30 p-4 rounded-lg shadow-md flex gap-4"
-                >
-                  <div className="w-[50px] h-[50px] rounded-full bg-[#847FAD] flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold">{comment.user}</p>
-                    <p className="text-sm text-gray-300">
-                      {new Date(comment.timestamp).toISOString().split('T')[0]}
-                    </p>
-                    <p className="mt-2">{comment.content}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
 

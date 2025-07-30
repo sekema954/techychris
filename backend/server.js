@@ -18,11 +18,13 @@ const deleteSubscribers = require('../backend/routes/admin/deletesubscribers');
 const sendEmailToSubscribers = require('./routes/admin/sendemail');
 const postComments = require('./routes/user/comments');
 const sendContact = require('./routes/admin/contact');
+const uploadRoute = require('./routes/uploads');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
+app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
 app.use(express.json());
 
 //Connect to mongodb
@@ -43,6 +45,7 @@ app.use('/api', editBlog);
 app.use('/api', deleteBlog);
 app.use('/api', subscribeEmails);
 app.use('/api', postComments);
+app.use('/api', uploadRoute);
 
 //Admin Routes
 app.use('/api', adminRegister );

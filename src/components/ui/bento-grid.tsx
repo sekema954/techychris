@@ -1,5 +1,6 @@
-// components/ui/bento-grid.tsx
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { cn } from "../../../libs/utils";
+import { faClipboard } from "@fortawesome/free-solid-svg-icons";
 
 export const BentoGrid = ({
   className,
@@ -11,7 +12,7 @@ export const BentoGrid = ({
   return (
     <div
       className={cn(
-        "mx-auto grid grid-cols-1 gap-4 md:auto-rows-[24rem] md:grid-cols-3",
+        "grid gap-4 p-4", // remove hardcoded grid-cols
         className
       )}
     >
@@ -20,6 +21,7 @@ export const BentoGrid = ({
   );
 };
 
+
 export const BentoGridItem = ({
   id,
   className,
@@ -27,9 +29,8 @@ export const BentoGridItem = ({
   description,
   slug,
   thumbnail,
-
 }: {
-  id:number | string;
+  id: number | string;
   className?: string;
   title?: string | React.ReactNode;
   description?: string | React.ReactNode;
@@ -40,20 +41,28 @@ export const BentoGridItem = ({
     <div
       key={id}
       className={cn(
-        "group/bento shadow-input row-span-1 flex flex-col justify-between rounded-xl border border-neutral-200 bg-white p-4 transition duration-200 hover:shadow-xl dark:border-white/[0.2] dark:bg-black dark:shadow-none",
+        // Dark card with hover effect and height control
+        "bg-[#1e1e2f] flex flex-col justify-between rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-transform hover:scale-[1.02] h-[26rem]",
         className
       )}
     >
-      {thumbnail && <div className="mb-3">{thumbnail}</div>}
+      <div className="w-full h-48 bg-black overflow-hidden">
+        {thumbnail}
+      </div>
 
-      <div className="transition duration-200 group-hover/bento:translate-x-2">
-        <div className="mt-2 mb-2 font-sans font-bold text-neutral-800 dark:text-neutral-200">
+      <div className="flex flex-col gap-2 px-4 py-3">
+        <FontAwesomeIcon
+          icon={faClipboard}
+          className="text-purple-400 text-lg self-start"
+        />
+
+        <h3 className="text-white text-lg font-semibold line-clamp-2">
           {title}
-        </div>
-        <div className="font-sans text-sm text-neutral-600 dark:text-neutral-300">
-          {description}
-        </div>
-        {slug && <div className="mt-3">{slug}</div>}
+        </h3>
+
+        <p className="text-sm text-gray-400 line-clamp-3">{description}</p>
+
+        {slug && <div className="pt-2">{slug}</div>}
       </div>
     </div>
   );

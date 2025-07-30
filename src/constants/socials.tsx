@@ -16,7 +16,7 @@ export const Socials = [
     {
         id:2,
         title:"TikTok",
-        link:"/https://www.tiktok.com/@_mbame",
+        link:"https://www.tiktok.com/@_mbame",
         icon:faTiktok,
         backgroundColor:'#10101',
     },

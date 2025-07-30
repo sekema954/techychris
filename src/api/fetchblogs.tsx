@@ -45,7 +45,9 @@ const useFetchBlogs = () => {
   const [error, setError] = useState<string | null>(null);
 
   const fetchBlogs = async () => {
-    const url = "https://techychris-d43416ccb998.herokuapp.com/api/blogs";
+    const url = import.meta.env.PROD
+      ? `${import.meta.env.VITE_HEROKU_URL}/api/blogs`
+      : "http://localhost:3000/api/blogs"; //endpoint
     try {
       const response = await fetch(url, {
         method: "GET",

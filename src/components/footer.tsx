@@ -1,6 +1,8 @@
 import { Wallpoet } from "../constants/fonts";
 import Divider from "./divider";
 import logo from '../assets/images/logo.png';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const Footer = () => {
   return (
@@ -31,7 +33,6 @@ const Footer = () => {
             <li><a href="/privacy">Privacy Policy</a></li>
             <li><a href="/videos">Videos</a></li>
             <li><a href="/blogs">Blogs</a></li>
-            <li><a href="/admin/register">Admin</a></li>
           </ul>
         </div>
 
@@ -53,7 +54,7 @@ const Footer = () => {
           </p>
           <a href="/courses">
             <button className="bg-[#A058B1] text-white px-4 py-2 rounded-md text-sm hover:opacity-90 transition flex items-center gap-1">
-              Start Learning <span className="text-lg">↗</span>
+              Start Learning <span className="text-lg"><FontAwesomeIcon icon={faArrowRight} /></span>
             </button>
           </a>
         </div>

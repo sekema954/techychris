@@ -1,17 +1,30 @@
 import { useState, useEffect } from "react";
 import useFetchBlogs from "../api/fetchblogs";
+import { LoadingSpinner } from "../components/loading";
 
 const BlogHome = () => {
-  const { blogs } = useFetchBlogs();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredBlogs, setFilteredBlogs] = useState(blogs);
+  const { blogs, isLoading } = useFetchBlogs();
 
-  const handleChange = (e: any) => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [searchVal, setSearchVal] = useState<string>("");
+  const [filteredBlogs, setFilteredBlogs] = useState<any[]>([]);
+  const [isSearching, setIsSearching] = useState<boolean>(false);
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const blogsPerPage = 6;
+
+  // Handle input change
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
-  // Run search and update filtered blogs whenever searchTerm changes
-  useEffect(() => {
+  // Handle Search submit
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!searchTerm.trim()) return;
+
+    // Filter blogs by search term on submit
     const lower = searchTerm.toLowerCase();
     const results = blogs.filter(
       (blog) =>
@@ -20,10 +33,31 @@ const BlogHome = () => {
         blog.tags?.some((tag) => tag.toLowerCase().includes(lower))
     );
     setFilteredBlogs(results);
-  }, [searchTerm, blogs]); // Trigger on search term or blog data change
+    setSearchVal(searchTerm);
+    setIsSearching(true);
+  };
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+  // Handle "Show All" click - reset search & pagination
+  const handleShowAll = () => {
+    setIsSearching(false);
+    setSearchTerm("");
+    setSearchVal("");
+    setCurrentPage(1);
+  };
+
+  // Pagination logic for full blogs list (only when not searching)
+  const totalPages = Math.ceil(blogs.length / blogsPerPage);
+  const indexOfLastBlog = currentPage * blogsPerPage;
+  const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+  const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
+
+  // Pagination handlers
+  const handleNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
   };
 
   return (
@@ -46,39 +80,88 @@ const BlogHome = () => {
           />
           <button 
             type="submit" 
-            className="px-5 py-3 bg-[#3E3A59] hover:bg-[#5e5783] transition disabled:bg-gray-500"
-            disabled={!searchTerm}
+            className="px-5 py-3 bg-blue-600 hover:bg-blue-700 transition disabled:bg-blue-600/60"
+            disabled={!searchTerm.trim()}
           >
             Search
           </button>
         </form>
+
+        {/* Search Info & Show All */}
+        {isSearching && (
+          <div className="py-6 flex items-center gap-4">
+            <p>
+              {filteredBlogs.length} result{filteredBlogs.length !== 1 ? "s" : ""} for{" "}
+              <span className="font-bold text-red-300">{searchVal}</span>
+            </p>
+            <button
+              onClick={handleShowAll}
+              className="underline text-blue-400 hover:text-blue-600"
+            >
+              Show All
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Featured Posts */}
       <h2 className="text-xl font-semibold mb-6">Featured Posts:</h2>
+
+      {blogs.length === 0 &&(
+        <LoadingSpinner title="Blogs" />
+      )}
+
+      {isLoading &&(
+        <LoadingSpinner title="Blogs" />
+      )}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {filteredBlogs.length > 0 ? (
-          filteredBlogs.map((blog, i) => (
-            <a href={`/blogDetails/${blog.id}`} key={i} className="bg-[#1E1C2E] rounded-lg overflow-hidden shadow-md">
-              <img
-                src={blog.thumbnail || "https://via.placeholder.com/400x200.png?text=Blog+Image"}
-                alt="Blog Thumbnail"
-                className="w-full h-40 object-cover"
-              />
-              <div className="p-4 space-y-2">
-                <h3 className="font-semibold text-base">{blog.title}</h3>
-                <p className="text-sm text-gray-400">{blog.published_date}</p>
-                <div className="flex justify-between text-sm">
-                  <button className="underline hover:text-gray-300">Read more</button>
-                  <span className="text-gray-400">{blog.creator}</span>
-                </div>
+        {/* Show filtered blogs if searching, else paginated blogs */}
+        {(isSearching ? filteredBlogs : currentBlogs).map((blog, i) => (
+          <a
+            href={`/blogDetails/${blog.id}`}
+            key={blog.id || i}
+            className="bg-[#1E1C2E] rounded-lg overflow-hidden shadow-md"
+          >
+            <img
+              src={blog.thumbnail || "https://via.placeholder.com/400x200.png?text=Blog+Image"}
+              alt="Blog Thumbnail"
+              className="w-full h-40 object-cover"
+            />
+            <div className="p-4 space-y-2">
+              <h3 className="font-semibold text-base">{blog.title}</h3>
+              <p className="text-sm text-gray-400">{blog.published_date}</p>
+              <div className="flex justify-between text-sm">
+                <button className="underline text-purple-300 hover:text-purple-200">Read more</button>
+                <span className="text-gray-400">{blog.creator}</span>
               </div>
-            </a>
-          ))
-        ) : (
-          <p className="col-span-3 text-center text-gray-400">No blogs found</p>
-        )}
+            </div>
+          </a>
+        ))}
       </div>
+
+      {/* Pagination Controls only when NOT searching */}
+      {!isSearching && blogs.length > 0 && (
+        <div className="flex justify-center items-center gap-4 mt-8">
+          <button
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+            className="px-4 py-2 bg-blue-600 rounded hover:bg-gray-300 disabled:opacity-50"
+          >
+            Previous
+          </button>
+          <span className="text-lg font-medium">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className="px-4 py-2 bg-blue-600 rounded hover:bg-gray-300 disabled:opacity-50"
+          >
+            Next
+          </button>
+        </div>
+      )}
     </section>
   );
 };

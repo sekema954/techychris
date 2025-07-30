@@ -1,120 +1,101 @@
-import { useState } from 'react';
-import image from '../assets/images/contact_image.png';
-import Divider from '../components/divider';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useState } from 'react';
 
 const Contact = () => {
-    const [formData, setFormData] = useState({
-        firstname: "",
-        lastname: "",
-        email: "",
-        message: "",
-    });
+  const actions = [
+    {
+      title: 'Google Form',
+      link: 'https://docs.google.com/forms/d/e/1FAIpQLSdcdfZ7zEQgINwQl3mK1hJ0sbmzaalU-I9YrjkItsBzcryD_Q/viewform',
+      description: 'Start by filling out the Google Form so we can better understand your needs.',
+    },
+    {
+      title: 'Schedule on Calendly',
+      link: 'https://calendly.com/techychris',
+      description: 'Pick a time that works best for you to connect.',
+    },
+    {
+      title: 'Join Discord',
+      link: 'https://discord.com/channels/1397433141949366394/1397433142838562828',
+      description: 'Join the community for support and updates.',
+    },
+  ];
 
-    const handleChange = (e: any) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
-    };
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
 
-    const handleSubmit = async (e: any) => {
-        e.preventDefault();
-      
-        try {
-          const response = await fetch('http://localhost:3000/api/send-contact', { 
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-          });
-      
-          const data = await response.json();
-      
-          if (response.ok) {
-            alert('Email sent successfully!');
-            setFormData({
-              firstname: '',
-              lastname: '',
-              email: '',
-              message: '',
-            });
-          } else {
-            alert(`Failed to send email: ${data.message}`);
-          }
-        } catch (error) {
-          console.error('Error:', error);
-          alert('Something went wrong. Please try again later.');
-        }
-      };
-      
+  return (
+    <div className="min-h-screen bg-gradient-to-tr from-[#1D1B2E] to-[#262244] py-20 px-6 flex items-center justify-center">
+      <div
+        className={`max-w-6xl w-full bg-white rounded-3xl shadow-2xl grid grid-cols-1 lg:grid-cols-12 overflow-hidden
+          transition-all duration-700 ease-in-out transform 
+          ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+      >
+        {/* Left Side */}
+        <div className="lg:col-span-7 p-12 md:p-20 flex flex-col justify-center gap-12 bg-gradient-to-br from-indigo-50 to-blue-100">
+          <div>
+            <h1 className="text-4xl font-extrabold text-indigo-900 mb-4 tracking-tight">
+              Let’s Get You Connected
+            </h1>
+            <p className="text-indigo-700 text-lg max-w-lg">
+              Choose one of the options below to get started. I'm here to support you every step of the way!
+            </p>
+          </div>
 
-    return (
-        <section className="bg-[#3E3A59] text-white py-12 px-4">
-            <header className="text-center mb-12">
-                <h1 className="text-4xl lg:text-5xl font-bold mb-4">CONTACT</h1>
-                <p className="max-w-xl mx-auto text-lg">
-                    Thanks for your interest in my IT Courses and guides. If you’d like to get in touch with me, please contact me on social media or complete the following form.
-                </p>
-            </header>
-
-            <div className="grid lg:grid-cols-2 gap-10 max-w-6xl mx-auto items-center">
-                {/* Image section */}
-                <div className="w-full max-h-[400px] overflow-hidden rounded-2xl shadow-lg">
-                    <img className="w-full h-full object-cover" src={image} alt="Contact" />
+          <div className="flex flex-col gap-8">
+            {actions.map((action, idx) => (
+              <a
+                key={idx}
+                href={action.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-white rounded-2xl shadow-lg py-6 px-8 cursor-pointer hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row md:items-center md:justify-between border border-transparent hover:border-indigo-400"
+              >
+                <div className="mb-3 md:mb-0">
+                  <h2 className="text-indigo-900 text-xl font-semibold group-hover:text-indigo-700 transition-colors">
+                    {action.title}
+                  </h2>
+                  <p className="text-indigo-600 mt-1 max-w-md">{action.description}</p>
                 </div>
 
-                {/* Form section */}
-                <form
-                    onSubmit={handleSubmit}
-                    className="bg-[#171723] p-8 rounded-2xl shadow-lg flex flex-col gap-6"
+                <div
+                  className="w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-200 transition-all duration-300"
+                  aria-hidden="true"
                 >
-                    <Divider />
-                    <div className="grid md:grid-cols-2 gap-4">
-                        <input
-                            onChange={handleChange}
-                            type="text"
-                            name="firstname"
-                            value={formData.firstname}
-                            placeholder="First Name"
-                            className="rounded-xl h-[55px] px-4 text-black bg-white"
-                        />
-                        <input
-                            onChange={handleChange}
-                            type="text"
-                            name="lastname"
-                            value={formData.lastname}
-                            placeholder="Last Name"
-                            className="rounded-xl h-[55px] px-4 text-black bg-white"
-                        />
-                    </div>
-                    <input
-                        onChange={handleChange}
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        placeholder="Email"
-                        className="rounded-xl h-[55px] px-4 text-black bg-white"
-                    />
-                    <textarea
-                        onChange={handleChange}
-                        name="message"
-                        value={formData.message}
-                        rows={5}
-                        placeholder="How can I help you?"
-                        className="rounded-xl px-4 py-3 text-black bg-white resize-none"
-                    ></textarea>
-                    <button
-                        type="submit"
-                        className="h-[50px] bg-[#847FAD] hover:bg-[#6c68a4] transition duration-300 rounded-xl text-white font-medium"
-                    >
-                        Submit
-                    </button>
-                </form>
-            </div>
-        </section>
-    );
+                  <FontAwesomeIcon
+                    icon={faArrowRight}
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                  />
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Right Side */}
+        <div className="lg:col-span-5 bg-indigo-900 flex items-center justify-center p-12 rounded-tr-3xl rounded-br-3xl relative overflow-hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 400 400"
+            className="w-full max-w-sm opacity-70"
+            fill="none"
+            stroke="white"
+            strokeWidth="1.5"
+          >
+            <circle cx="200" cy="200" r="180" strokeOpacity="0.1" />
+            <path d="M150 180h100v40H150zM180 140h40v40h-40z" strokeOpacity="0.3" />
+            <circle cx="200" cy="200" r="80" strokeOpacity="0.3" />
+            <path d="M120 320l160-160" strokeOpacity="0.3" />
+          </svg>
+          <span className="absolute bottom-6 right-6 text-indigo-400 italic text-sm select-none">
+            Connect & Collaborate
+          </span>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Contact;
