@@ -1,11 +1,12 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 const AdminLogin = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
+  const navigate = useNavigate();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
@@ -18,10 +19,13 @@ const AdminLogin = () => {
   };
 
   const handleSubmit = async (e: any) => {
+    const BASE_URL = import.meta.env.PROD 
+    ? `${import.meta.env.VITE_HEROKU_URL}/api/admin/login`
+    : 'http://localhost:3000/api/admin/login';
     e.preventDefault();
   
     try {
-      const res = await fetch("https://techychris-d43416ccb998.herokuapp.com/api/admin/login", {
+      const res = await fetch(BASE_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -32,10 +36,10 @@ const AdminLogin = () => {
       const data = await res.json();
   
       if (res.ok) {
-        localStorage.setItem("token", data.token); // store JWT token
+        localStorage.setItem("authToken", data.token); // store JWT token
         setSuccess(true);
         setError("");
-        window.location.href = "/admin/dashboard"; // redirect after login
+        navigate("/admin/dashboard"); // proper React redirect
       } else {
         setError(data.message || "Login failed");
         setSuccess(false);

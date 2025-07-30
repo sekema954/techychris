@@ -1,9 +1,14 @@
-import { Navigate } from 'react-router-dom';
+import { ReactNode } from 'react';
+import PageNotFound from '../../../src/pages/404'; 
 
-const PrivateRoute = ({ children }:any) => {
-  const token = localStorage.getItem('token');
-
-  return token ? children : <Navigate to="/admin" replace />;
+type Props = {
+  children: ReactNode;
 };
 
-export default PrivateRoute;
+const PrivateRouter = ({ children }: Props) => {
+  const token = localStorage.getItem('authToken');
+
+  return token ? children : <PageNotFound />; 
+};
+
+export default PrivateRouter;

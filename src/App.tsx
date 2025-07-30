@@ -16,22 +16,37 @@ import Terms_Conditions from './resources/terms_conditions';
 import AdminDashboard from './admin/dashbaord';
 import AdminRegister from './admin/authentication/register';
 import AdminLogin from './admin/authentication/login';
-import PrivateRouter from '../backend/routes/admin/privateroute'
-
+import PrivateRouter from '../backend/routes/admin/privateroute';
 import { useEffect } from 'react';
+import PopupNotice from './components/popup';
 
-const Layout = ({ children }:any) => {
+const Layout = ({ children }: any) => {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith("/admin");
 
+  // Define specific admin routes where you want to exclude the popup
+  const excludedPopupRoutes = [
+    "/admin/dashboard",
+    "/admin/login",
+    "/admin/register",
+  ];
+
+  // Check if the current route is in excludedPopupRoutes
+  const showPopupNotice = !excludedPopupRoutes.includes(location.pathname);
+
   useEffect(() => {
-    window.scrollTo(0, 0); // optional: scroll to top on route change
+    window.scrollTo(0, 0);
   }, [location.pathname]);
 
   return (
     <>
       {!isAdminRoute && <Navbar />}
+
+      {/* Show PopupNotice only if current route is NOT excluded */}
+      {showPopupNotice && <PopupNotice />}
+
       {children}
+
       {!isAdminRoute && <Footer />}
     </>
   );
@@ -54,7 +69,7 @@ const App = () => {
           <Route path="/privacy" element={<Privacy_Policy />} />
           <Route path="/terms_conditions" element={<Terms_Conditions />} />
 
-          {/** Protected Routes */}
+          {/* Protected Routes */}
           <Route path="/admin/dashboard" element={<PrivateRouter><AdminDashboard /></PrivateRouter>} />
           <Route path="/admin/register" element={<AdminRegister />} />
           <Route path="/admin/login" element={<AdminLogin />} />
@@ -63,5 +78,6 @@ const App = () => {
     </Router>
   );
 };
+
 
 export default App;

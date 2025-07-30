@@ -19,7 +19,10 @@ const useFetchCourses = () => {
     const [isLoading, setLoading] = useState(false);
     useEffect(()=>{
         const fetchCourses = async () => {
-            const url = "https://techychris-d43416ccb998.herokuapp.com/api/courses";
+            const url = 
+            import.meta.env.PROD
+            ? `${import.meta.env.VITE_HEROKU_URL}/api/courses`
+            :"http://localhost:3000/api/courses"; //Same with this. Add your heroku link in front of /api/courses
             const options = {
                 method:"GET",
                 headers:{

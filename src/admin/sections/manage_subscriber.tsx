@@ -15,12 +15,15 @@ const Manage_Subscribers = () => {
   const [messageText, setMessageText] = useState("");
 
   const [selectedEmails, setSelectedEmails] = useState<string[]>([]);
-  const [selectAll, setSelectAll] = useState(false); // ✅ Select All state
+  const [selectAll, setSelectAll] = useState(false);
 
   useEffect(() => {
     const fetchSubscribers = async () => {
       try {
-        const response = await fetch("https://techychris-d43416ccb998.herokuapp.com/api/get/emails");
+        const BASE_URL = import.meta.env.PROD
+        ? `${import.meta.env.VITE_HEROKU_URL}/api/get/emails`
+        :" http://localhost:3000/api/get/emails"
+        const response = await fetch(BASE_URL);
         const data = await response.json();
         setSubscribers(data.subscribers);
       } catch (error) {
@@ -35,7 +38,10 @@ const Manage_Subscribers = () => {
 
   const handleRemove = async (email: string, id: string) => {
     try {
-      const response = await fetch(`https://techychris-d43416ccb998.herokuapp.com/api/delete/email/${id}`, {
+      const BASE_URL = import.meta.env.PROD
+      ? `${import.meta.env.VITE_HEROKU_URL}/api/delete/email/${id}`
+      : `http://localhost:3000/api/delete/email/${id}`;
+      const response = await fetch(BASE_URL, {
         method: "DELETE",
       });
 
@@ -71,7 +77,10 @@ const Manage_Subscribers = () => {
   const sendEmailMessage = async (bulk = false) => {
     const recipients = bulk ? selectedEmails : [messageEmail];
     try {
-      const res = await fetch("https://techychris-d43416ccb998.herokuapp.com/api/send/email", {
+      const BASE_URL = import.meta.env.PROD
+      ? `${import.meta.env.VITE_HEROKU_URL}/api/send/email`
+      : "http://localhost:3000/api/send/email";
+      const res = await fetch(BASE_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

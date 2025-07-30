@@ -1,26 +1,44 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const Admin = require('../../models/admin/account');
 require('dotenv').config();
 
 const router = express.Router();
 
-// Register admin (only once)
-router.post('/admin/register', async (req, res) => {
+// Middleware to block access in production (optional but secure)
+const blockInProduction = (req, res, next) => {
+  if (process.env.NODE_ENV === 'production') {
+    return res.status(403).json({ message: "Admin registration is disabled in production." });
+  }
+  next();
+};
+
+// POST /admin/register (manual registration with secret code)
+router.post('/admin/register', blockInProduction, async (req, res) => {
   try {
-    const { fullname, email, password } = req.body;
+    const { fullname, email, password, code } = req.body;
 
-    const existing = await Admin.findOne({ email });
-    if (existing) return res.status(403).json({ message: "Admin already registered." });
+    // Check code first before any DB lookup
+    if (code !== process.env.SECRET_CODE) {
+      return res.status(401).json({ message: "Invalid secret code." });
+    }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // Check if admin exists
+    const existingAdmin = await Admin.findOne({ email });
+    if (existingAdmin) {
+      return res.status(409).json({ message: "Admin already registered." });
+    }
+
+    // Create new admin
+    const hashedPassword = await bcrypt.hash(password, 12);
     const newAdmin = new Admin({ fullname, email, password: hashedPassword });
-    await newAdmin.save();
 
-    res.status(201).json({ message: "Admin registered successfully." });
+    await newAdmin.save();
+    return res.status(201).json({ message: "Admin registered successfully." });
+
   } catch (err) {
-    res.status(500).json({ message: "Server error." });
+    console.error(err);
+    return res.status(500).json({ message: "Internal server error." });
   }
 });
 

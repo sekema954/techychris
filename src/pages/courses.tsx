@@ -19,7 +19,6 @@ const CoursePage = () => {
 
       {/* Courses Section */}
       <section className="py-12 px-6 md:px-12 bg-gray-900">
-        <h2 className="text-3xl font-bold text-center mb-8">Featured Courses</h2>
 
         {isLoading ? (
           <p className="text-center text-gray-400">Loading courses...</p>

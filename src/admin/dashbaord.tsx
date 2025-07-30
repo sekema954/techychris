@@ -1,20 +1,29 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  LayoutDashboard,
-  FileText,
-  ShoppingCart,
-  Mail,
-  LogOut,
-} from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { LayoutDashboard, FileText, ShoppingCart, Mail, LogOut } from "lucide-react";
 import AdminBlogs from "./sections/manage_blogs";
 import Manage_Subscribers from "./sections/manage_subscriber";
 import ManageShop from "./sections/manage_shop";
+import DashboardOverview from "../admin/dashboardOverview";
 
-const AdminDashboard:any = () => {
+const AdminDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
-  const navigate = useNavigate();
 
+  // For demo, we'll fake fetching these counts and blogs
+  const [blogs, setBlogs] = useState<any[]>([]);
+  const [subscribersCount, setSubscribersCount] = useState(0);
+  const [productsCount, setProductsCount] = useState(0);
+
+  // Load dummy data or fetch from APIs
+  useEffect(() => {
+    // Replace with actual fetch calls
+    setBlogs([
+      { id: "1", title: "First Blog", intro: "Intro to first blog" },
+      { id: "2", title: "Second Blog", intro: "Intro to second blog" },
+      { id: "3", title: "Third Blog", intro: "Intro to third blog" },
+    ]);
+    setSubscribersCount(350);
+    setProductsCount(120);
+  }, []);
 
   const tabs = [
     { name: "Dashboard", icon: LayoutDashboard, key: "dashboard" },
@@ -25,11 +34,13 @@ const AdminDashboard:any = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
-    navigate('/admin/login');
+    window.location.href = "/admin/login"; // Or use navigate if react-router-dom in use
   };
 
-
-
+  // Handlers for quick action buttons
+  const handleAddBlog = () => setActiveTab("blogs");
+  const handleAddProduct = () => setActiveTab("shop");
+  const handleViewSubscribers = () => setActiveTab("subscribers");
 
   return (
     <section className="min-h-screen bg-gray-950 text-white flex py-30">
@@ -51,7 +62,10 @@ const AdminDashboard:any = () => {
               {name}
             </button>
           ))}
-          <button onClick={handleLogout} className="flex items-center gap-3 mt-8 w-full text-left px-4 py-2 rounded-lg text-red-400 hover:bg-gray-800">
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-3 mt-8 w-full text-left px-4 py-2 rounded-lg text-red-400 hover:bg-gray-800"
+          >
             <LogOut className="w-5 h-5" />
             Logout
           </button>
@@ -59,12 +73,16 @@ const AdminDashboard:any = () => {
       </aside>
 
       {/* Content Area */}
-      <main className="flex-1 p-10">
+      <main className="flex-1 p-10 overflow-auto">
         {activeTab === "dashboard" && (
-          <div>
-            <h1 className="text-3xl font-bold mb-6">Dashboard Overview</h1>
-            <p className="text-gray-400">Welcome! Use the sidebar to manage your platform.</p>
-          </div>
+          <DashboardOverview
+            blogs={blogs}
+            subscribersCount={subscribersCount}
+            productsCount={productsCount}
+            onAddBlog={handleAddBlog}
+            onAddProduct={handleAddProduct}
+            onViewSubscribers={handleViewSubscribers}
+          />
         )}
         {activeTab === "blogs" && (
           <div>
@@ -77,7 +95,6 @@ const AdminDashboard:any = () => {
           <div>
             <h1 className="text-3xl font-bold mb-6">Manage Shop</h1>
             <p className="text-gray-400">Add or remove products, view inventory.</p>
-            {/* Add product management tools here */}
             <ManageShop />
           </div>
         )}
@@ -85,7 +102,6 @@ const AdminDashboard:any = () => {
           <div>
             <h1 className="text-3xl font-bold mb-6">Subscriber Emails</h1>
             <p className="text-gray-400">View and export subscribed emails.</p>
-            {/* Add email list UI here */}
             <Manage_Subscribers />
           </div>
         )}

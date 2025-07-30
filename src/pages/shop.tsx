@@ -20,14 +20,14 @@ const ShopPage = () => {
 
   if (products.length === 0) {
     return (
-      <div className="bg-gray-950 text-white min-h-screen flex items-center justify-center">
+      <div className="text-white min-h-screen flex items-center justify-center">
         <ComingSoon />
       </div>
     );
   }
 
   return (
-    <div className="bg-gray-950 text-white min-h-screen flex flex-col py-35">
+    <div className="text-white min-h-screen flex flex-col py-35">
       {/* Hero Header */}
       <header className="bg-gradient-to-r from-cyan-600 to-blue-800 py-20 px-4 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-40"></div>

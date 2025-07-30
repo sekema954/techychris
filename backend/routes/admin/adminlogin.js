@@ -1,14 +1,25 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const rateLimit = require('express-rate-limit');
 const Admin = require('../../models/admin/account');
 require('dotenv').config();
 
 const router = express.Router();
 
+// Configure rate limiter: limit to 5 requests per 15 minutes per IP
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // limit each IP to 5 requests per windowMs
+  message: {
+    message: 'Too many login attempts from this IP, please try again after 15 minutes.',
+  },
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false,  // Disable `X-RateLimit-*` headers
+});
 
-// Login
-router.post('/admin/login', async (req, res) => {
+// Login route with rate limiting middleware applied
+router.post('/admin/login', loginLimiter, async (req, res) => {
   try {
     const { email, password } = req.body;
     const admin = await Admin.findOne({ email });
