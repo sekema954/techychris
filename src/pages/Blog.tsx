@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import useFetchBlogs from "../api/fetchblogs";
 import { LoadingSpinner } from "../components/loading";
 

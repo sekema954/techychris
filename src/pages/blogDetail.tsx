@@ -1,9 +1,8 @@
 // Frontend (React)
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
 import useFetchBlogs from "../api/fetchblogs";
 
-type CommentType = {
+{/***type CommentType = {
   id: string;
   postId: string;
   user: string;
@@ -11,7 +10,7 @@ type CommentType = {
   date: string;
   content:string;
   timestamp:string;
-};
+};***/}
 
 const BlogDetail = () => {
   const { blogs, isLoading, error } = useFetchBlogs();
