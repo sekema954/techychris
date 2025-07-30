@@ -38,7 +38,7 @@ const AdminRegister = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     const BASE_URL = import.meta.env.PROD
-    ? `${import.meta.env.VITE_HEROKU_URL}/api/admin/register`
+    ? `http://localhost:3000/api/admin/register`
     :'http://localhost:3000/api/admin/register'
     e.preventDefault();
 
