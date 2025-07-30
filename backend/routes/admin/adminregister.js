@@ -5,15 +5,14 @@ require('dotenv').config();
 
 const router = express.Router();
 
-
-
 // POST /admin/register (manual registration with secret code)
 router.post('/admin/register', async (req, res) => {
   try {
     const { fullname, email, password, code } = req.body;
 
+
     // Check code first before any DB lookup
-    if (code !== process.env.SECRET_CODE) {
+    if (code.trim() !== process.env.SECRET_CODE.trim()) {
       return res.status(401).json({ message: "Invalid secret code." });
     }
 
