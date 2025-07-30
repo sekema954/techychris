@@ -23,7 +23,7 @@ const Navbar = () => {
       id: 'discord',
       title: 'Discord',
       icon: faDiscord,
-      link: 'https://discord.com/channels/1397433141949366394/1397433142838562828',
+      link: 'https://discord.gg/QgjVAsbQCH',
       backgroundColor: '#7289DA',
     },
     {
