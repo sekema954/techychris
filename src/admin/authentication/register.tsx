@@ -37,9 +37,6 @@ const AdminRegister = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    const BASE_URL = import.meta.env.PROD
-    ? `http://localhost:3000/api/admin/register`
-    :'http://localhost:3000/api/admin/register'
     e.preventDefault();
 
     if (!passwordRegex.test(formData.password)) {
@@ -50,7 +47,7 @@ const AdminRegister = () => {
     }
 
     try {
-      const res = await fetch(BASE_URL, {
+      const res = await fetch('https://techychris-e3f874ff6641.herokuapp.com/api/admin/register', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
