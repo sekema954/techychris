@@ -5,16 +5,10 @@ require('dotenv').config();
 
 const router = express.Router();
 
-// Middleware to block access in production (optional but secure)
-const blockInProduction = (req, res, next) => {
-  if (process.env.NODE_ENV === 'production') {
-    return res.status(403).json({ message: "Admin registration is disabled in production." });
-  }
-  next();
-};
+
 
 // POST /admin/register (manual registration with secret code)
-router.post('/admin/register', blockInProduction, async (req, res) => {
+router.post('/admin/register', async (req, res) => {
   try {
     const { fullname, email, password, code } = req.body;
 
