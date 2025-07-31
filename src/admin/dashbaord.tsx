@@ -1,29 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { LayoutDashboard, FileText, ShoppingCart, Mail, LogOut } from "lucide-react";
 import AdminBlogs from "./sections/manage_blogs";
 import Manage_Subscribers from "./sections/manage_subscriber";
 import ManageShop from "./sections/manage_shop";
 import DashboardOverview from "../admin/dashboardOverview";
+import useFetchBlogs from "../api/fetchblogs";
+import { useFetchSubscribers } from "../api/useFetchSubscribers";
 
 const AdminDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
 
-  // For demo, we'll fake fetching these counts and blogs
-  const [blogs, setBlogs] = useState<any[]>([]);
-  const [subscribersCount, setSubscribersCount] = useState(0);
-  const [productsCount, setProductsCount] = useState(0);
-
-  // Load dummy data or fetch from APIs
-  useEffect(() => {
-    // Replace with actual fetch calls
-    setBlogs([
-      { id: "1", title: "First Blog", intro: "Intro to first blog" },
-      { id: "2", title: "Second Blog", intro: "Intro to second blog" },
-      { id: "3", title: "Third Blog", intro: "Intro to third blog" },
-    ]);
-    setSubscribersCount(350);
-    setProductsCount(120);
-  }, []);
+  // Use your real hooks here
+  const { blogs} = useFetchBlogs();
+  const { subscribers } = useFetchSubscribers();
 
   const tabs = [
     { name: "Dashboard", icon: LayoutDashboard, key: "dashboard" },
@@ -34,17 +23,15 @@ const AdminDashboard: React.FC = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
-    window.location.href = "/admin/login"; // Or use navigate if react-router-dom in use
+    window.location.href = "/admin/login";
   };
 
-  // Handlers for quick action buttons
   const handleAddBlog = () => setActiveTab("blogs");
   const handleAddProduct = () => setActiveTab("shop");
   const handleViewSubscribers = () => setActiveTab("subscribers");
 
   return (
     <section className="min-h-screen bg-gray-950 text-white flex py-30">
-      {/* Sidebar */}
       <aside className="w-64 bg-gray-900 p-6">
         <h2 className="text-2xl font-bold mb-8 text-center">Admin Panel</h2>
         <nav className="space-y-4">
@@ -53,9 +40,7 @@ const AdminDashboard: React.FC = () => {
               key={key}
               onClick={() => setActiveTab(key)}
               className={`flex items-center gap-3 w-full text-left px-4 py-2 rounded-lg transition ${
-                activeTab === key
-                  ? "bg-blue-700"
-                  : "hover:bg-gray-800 hover:text-blue-400"
+                activeTab === key ? "bg-blue-700" : "hover:bg-gray-800 hover:text-blue-400"
               }`}
             >
               <Icon className="w-5 h-5" />
@@ -72,36 +57,37 @@ const AdminDashboard: React.FC = () => {
         </nav>
       </aside>
 
-      {/* Content Area */}
       <main className="flex-1 p-10 overflow-auto">
         {activeTab === "dashboard" && (
           <DashboardOverview
             blogs={blogs}
-            subscribersCount={subscribersCount}
-            productsCount={productsCount}
+            subscribersCount={subscribers.length}
             onAddBlog={handleAddBlog}
             onAddProduct={handleAddProduct}
             onViewSubscribers={handleViewSubscribers}
           />
         )}
+
         {activeTab === "blogs" && (
           <div>
             <h1 className="text-3xl font-bold mb-6">Manage Blogs</h1>
-            <p className="text-gray-400">View, edit, or create blog posts.</p>
+            <p className="text-gray-400 mb-4">View, edit, or create blog posts.</p>
             <AdminBlogs />
           </div>
         )}
+
         {activeTab === "shop" && (
           <div>
             <h1 className="text-3xl font-bold mb-6">Manage Shop</h1>
-            <p className="text-gray-400">Add or remove products, view inventory.</p>
+            <p className="text-gray-400 mb-4">Add or remove products, view inventory.</p>
             <ManageShop />
           </div>
         )}
+
         {activeTab === "subscribers" && (
           <div>
             <h1 className="text-3xl font-bold mb-6">Subscriber Emails</h1>
-            <p className="text-gray-400">View and export subscribed emails.</p>
+            <p className="text-gray-400 mb-4">View and export subscribed emails.</p>
             <Manage_Subscribers />
           </div>
         )}
