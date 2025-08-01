@@ -1,19 +1,30 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs');
-const path = require('path');
+const Blog = require('../../models/blogs');
 
-const blogPath = path.join(__dirname, '../../json/blog.json');
+// GET all blogs
+router.get('/get/blogs', async (req, res) => {
+  try {
+    const blogs = await Blog.find();
 
-const readData = (filePath) => {
-  const data = fs.readFileSync(filePath, 'utf-8');
-  return JSON.parse(data);
-};
+    if (!blogs || blogs.length === 0) {
+      return res.status(404).json({ message: 'No blogs found' });
+    }
 
-// GET /api/blogs
-router.get('/blogs', (req, res) => {
-  const blogs = readData(blogPath);
-  res.json(blogs);
+    res.status(200).json({
+      success: true,
+      count: blogs.length,
+      data: blogs
+    });
+
+  } catch (error) {
+    console.error('Error fetching blogs:', error.message);
+    res.status(500).json({
+      success: false,
+      message: 'Internal server error',
+      error: error.message
+    });
+  }
 });
 
 module.exports = router;

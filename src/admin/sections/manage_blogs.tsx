@@ -50,8 +50,7 @@ const AdminBlogs = () => {
     try {
       const formDataUpload = new FormData();
       formDataUpload.append("file", file);
-
-      const response = await fetch('https://techychris-e3f874ff6641.herokuapp.com/api/upload', {
+      const response = await fetch(`${import.meta.env.VITE_HEROKU_URL}/api/upload`, {
         method: "POST",
         body: formDataUpload,
       });
@@ -84,13 +83,13 @@ const AdminBlogs = () => {
     try {
       let response;
       if (isEditing && editId) {
-        response = await fetch(`https://techychris-e3f874ff6641.herokuapp.com/api/blogs/${editId}`, {
+        response = await fetch(`${import.meta.env.VITE_HEROKU_URL}/api/update/blogs/${editId}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
       } else {
-        response = await fetch('https://techychris-e3f874ff6641.herokuapp.com/api/blogs', {
+        response = await fetch(`${import.meta.env.VITE_HEROKU_URL}/api/post/blogs`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
@@ -106,7 +105,7 @@ const AdminBlogs = () => {
       setIsEditing(false);
       setEditId(null);
 
-      // Optimistically update UI by refetching data after submit
+      //update UI by refetching data after submit
       await refetch();
 
       setMessage({ type: "success", text: isEditing ? "Blog updated successfully." : "Blog added successfully." });
@@ -146,7 +145,7 @@ const AdminBlogs = () => {
 
 
     try {
-      const response = await fetch(`https://techychris-e3f874ff6641.herokuapp.com/api/blogs/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_HEROKU_URL}/api/delete/blogs/${id}`, {
         method: "DELETE",
       });
       if (!response.ok) {

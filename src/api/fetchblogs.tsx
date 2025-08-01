@@ -49,7 +49,7 @@ const useFetchBlogs = () => {
       ? `${import.meta.env.VITE_HEROKU_URL}/api/blogs`
       : "http://localhost:3000/api/blogs"; //endpoint{**/}
     try {
-      const response = await fetch(`${import.meta.env.VITE_HEROKU_URL}/api/blogs`, {
+      const response = await fetch(`${import.meta.env.VITE_HEROKU_URL}/api/get/blogs`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });

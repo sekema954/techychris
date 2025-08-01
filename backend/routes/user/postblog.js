@@ -1,29 +1,72 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs');
-const path = require('path');
-const { v4: uuidv4 } = require('uuid');
+const Blog = require('../../models/blogs');
 
-const blogPath = path.join(__dirname, '../../json/blog.json');
+// POST a new blog
+router.post('/post/blogs', async (req, res) => {
+  try {
+    const {
+      title,
+      slug,
+      intro,
+      middle_context,
+      conclusion,
+      content,
+      thumbnail,
+      hero_image,
+      categories,
+      tags,
+      creator,
+    } = req.body;
 
-// Utility to read from file
-const readData = (filePath) => {
-  const data = fs.readFileSync(filePath, 'utf-8');
-  return JSON.parse(data);
-};
+    // Validate required fields
+    if (!title || !slug || !middle_context || !conclusion || !thumbnail || !hero_image || !categories ||!tags || !creator || !intro) {
+      return res.status(400).json({
+        success: false,
+        message: 'Missing required fields: title and slug are required',
+      });
+    }
 
-//  Utility to write to file
-const writeData = (filePath, data) => {
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
-};
+    // Validate array types
+    if (categories && !Array.isArray(categories)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Categories must be an array of strings',
+      });
+    }
 
-// POST a blog
-router.post('/blogs', (req, res) => {
-  const blogs = readData(blogPath);
-  const newBlog = { id: uuidv4(), ...req.body };
-  blogs.push(newBlog);
-  writeData(blogPath, blogs);
-  res.status(201).json(newBlog);
+    if (tags && !Array.isArray(tags)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Tags must be an array of strings',
+      });
+    }
+
+    const newBlog = new Blog({
+      title,
+      slug,
+      intro,
+      middle_context,
+      conclusion,
+      content,
+      thumbnail,
+      hero_image,
+      categories,
+      tags,
+      creator,
+    });
+
+    const savedBlog = await newBlog.save();
+    res.status(201).json({ success: true, data: savedBlog });
+
+  } catch (error) {
+    console.error('Error creating blog:', error.message);
+    res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+      error: error.message,
+    });
+  }
 });
 
 module.exports = router;
