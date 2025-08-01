@@ -133,19 +133,19 @@ const AdminBlogs = () => {
       creator: blog.creator || "",
     });
 
-    setEditId(blog.id);
+    setEditId(blog._id);
     setIsEditing(true);
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (_id: string) => {
     const confirmed = window.confirm("Are you sure you want to delete this blog?");
     if (!confirmed) return;
 
-    setDeletingId(id);
+    setDeletingId(_id);
 
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_HEROKU_URL}/api/delete/blogs/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_HEROKU_URL}/api/delete/blogs/${_id}`, {
         method: "DELETE",
       });
       if (!response.ok) {
@@ -290,25 +290,25 @@ const AdminBlogs = () => {
       ) : (
         <div className="space-y-6">
           {blogs.map((blog: any) => (
-            <div key={blog.id} className="bg-gray-800 p-5 rounded shadow-md">
+            <div key={blog._id} className="bg-gray-800 p-5 rounded shadow-md">
               <h3 className="text-xl font-semibold">{blog.title}</h3>
               <p className="mt-2 text-sm text-gray-300">{blog.intro}</p>
               <div className="mt-4 flex gap-2">
                 <button
                   type="button"
                   onClick={() => handleEdit(blog)}
-                  disabled={submitLoading || deletingId === blog.id}
+                  disabled={submitLoading || deletingId === blog._id}
                   className="px-3 py-1 bg-yellow-500 hover:bg-yellow-600 rounded text-sm disabled:opacity-50"
                 >
                   Edit
                 </button>
                 <button
                   type="button"
-                  onClick={() => handleDelete(blog.id)}
-                  disabled={submitLoading || deletingId === blog.id}
+                  onClick={() => handleDelete(blog._id)}
+                  disabled={submitLoading || deletingId === blog._id}
                   className="px-3 py-1 bg-red-600 hover:bg-red-700 rounded text-sm disabled:opacity-50 flex items-center justify-center gap-2"
                 >
-                  {deletingId === blog.id && (
+                  {deletingId === blog._id && (
                     <svg
                       className="animate-spin h-4 w-4 text-white"
                       xmlns="http://www.w3.org/2000/svg"
