@@ -12,7 +12,7 @@ export const BentoGrid = ({
   return (
     <div
       className={cn(
-        "grid gap-4 p-4", // remove hardcoded grid-cols
+        "grid gap-4 p-4",
         className
       )}
     >
@@ -30,7 +30,7 @@ export const BentoGridItem = ({
   slug,
   thumbnail,
 }: {
-  id: number | string;
+  id: string;
   className?: string;
   title?: string | React.ReactNode;
   description?: string | React.ReactNode;

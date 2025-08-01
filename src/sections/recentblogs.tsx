@@ -89,13 +89,13 @@ const RecentBlogs = () => {
       <BentoGrid className="w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {blogs.slice(0, 5).map((blog, _) => (
           <BentoGridItem
-            id={blog.id}
-            key={blog.id}
+            id={blog._id}
+            key={blog._id}
             title={blog.title}
             description={blog.description}
             slug={
               <a
-                href={`/blogDetails/${blog.id}`}
+                href={`/blogDetails/${blog._id}`}
                 className="text-blue-400 underline hover:text-blue-300 transition text-sm sm:text-base"
               >
                 Read more

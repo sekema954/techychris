@@ -119,8 +119,8 @@ const BlogHome = () => {
         {/* Show filtered blogs if searching, else paginated blogs */}
         {(isSearching ? filteredBlogs : currentBlogs).map((blog, i) => (
           <a
-            href={`/blogDetails/${blog.id}`}
-            key={blog.id || i}
+            href={`/blogDetails/${blog._id}`}
+            key={blog._id || i}
             className="bg-[#1E1C2E] rounded-lg overflow-hidden shadow-md"
           >
             <img

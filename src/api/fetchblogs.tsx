@@ -10,11 +10,11 @@ interface Author {
 interface Comment {
   user: string;
   comment: string;
-  date: string; // ISO date string
+  date: string; 
 }
 
 interface Blog {
-  id: string;
+  _id: string;
   slug: string;
   title: string;
   description: string;

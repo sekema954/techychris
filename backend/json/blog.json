@@ -1,6 +1,5 @@
 [
   {
-    "id": "8f336e39-caab-4e78-a42e-4c0f76a50902",
     "title": "Title of the blog goes here.",
     "slug": "Slug is a second title for SEO",
     "intro": "Developing backend applications can be challenging and require a significant investment of time and resources. In addition to mastery of programming languages, backend developers including junior developers must be familiar with a wide range of tools, their advantages and trade-offs. Developers also need to possess the ability to effectively design systems, understand business requirements, and adapt quickly to changing demands, especially during the early stages of product development.",
@@ -24,7 +23,6 @@
     "creator": "Samuel Ekema"
   },
   {
-    "id": "14617f8e-e7ac-4411-b4bc-b9ee1765c8a2",
     "title": "Data Structures and Algorithms",
     "slug": "dsa in computer science",
     "intro": "## What Are Data Structures?\n\nData structures are ways to organize and store data so that operations like access, insertion, deletion, and traversal are efficient.\n\n### Common Types of Data Structures:\n- **Arrays**: Fixed-size structures to store elements of the same type.\n- **Linked Lists**: Nodes connected by pointers. Types include singly, doubly, and circular.\n- **Stacks & Queues**: LIFO and FIFO structures used in parsing, recursion, and scheduling.\n- **Trees**: Hierarchical structures like Binary Trees, BSTs, AVL Trees.\n- **Graphs**: Represent relationships. Can be directed/undirected, weighted/unweighted.\n- **Hash Tables**: Key-value pairs allowing fast lookup.",
@@ -66,7 +64,6 @@
     "creator": "Samuel Ekema"
   },
   {
-    "id": "16868918-7874-459b-b5d5-5ff7adeacba9",
     "title": "Learn how to code for beginners",
     "slug": "learning-to-code",
     "intro": "coding, school, dsa, blog, educational, computers, science, computer science, algorithms, data, structures, data structures, ",
@@ -108,7 +105,6 @@
     "creator": "Admin"
   },
   {
-    "id": "0e0a610d-d6b7-478a-851d-341247356144",
     "title": "How i started coding",
     "slug": "my-journey-in-coding",
     "intro": "coding, school, dsa, blog, educational, computers, science, computer science, algorithms, data, structures, data structures, ",

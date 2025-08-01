@@ -14,13 +14,20 @@ import useFetchBlogs from "../api/fetchblogs";
 
 const BlogDetail = () => {
   const { blogs, isLoading, error } = useFetchBlogs();
-  const { id } = useParams();
-  const post = blogs.find((item) => item.id === id);
+  const { _id } = useParams();
+
 
 
   if (isLoading) return <p className="text-white p-5">Loading...</p>;
   if (error) return <p className="text-white p-5">Failed to load blog data</p>;
+
+
+  const post = blogs.find((item) => item._id === _id);
+  console.log("URL param id:", _id); // check what comes from the URL
+  console.log("Fetched blog IDs:", blogs.map((b) => b._id)); // confirm structure
   if (!post) return <p className="text-white p-5">Blog post not found</p>;
+
+
 
   return (
     <section className="bg-[#3E3A59] text-white py-40 px-4 md:px-10">
@@ -62,12 +69,12 @@ const BlogDetail = () => {
             <h1 className="text-[20px] font-semibold">Recent Posts</h1>
             <div className="flex flex-col gap-5 mt-4">
               {blogs
-                .filter((item) => item.id !== id)
+                .filter((item) => item._id !== _id)
                 .slice(0, 4)
                 .map((item) => (
                   <a
-                    key={item.id}
-                    href={`/blogDetails/${item.id}`}
+                    key={item._id}
+                    href={`/blogDetails/${item._id}`}
                     className="flex gap-3 items-center hover:bg-[#2a293d] p-2 rounded transition"
                   >
                     <img

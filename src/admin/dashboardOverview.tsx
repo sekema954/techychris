@@ -3,7 +3,7 @@ import { useFetchSubscribers } from "../api/useFetchSubscribers";
 import { useState } from "react";
 import PatchNotesPopup from "../components/patchPopup";
 interface Blog {
-  id: string;
+  _id: string;
   title: string;
   intro: string;
 }
@@ -84,7 +84,7 @@ const DashboardOverview: React.FC<DashboardOverviewProps> = ({
           ) : (
             <ul className="space-y-3 max-h-48 overflow-y-auto">
               {blogs.slice(0, 5).map((blog) => (
-                <li key={blog.id} className="bg-gray-800 p-4 rounded">
+                <li key={blog._id} className="bg-gray-800 p-4 rounded">
                   <h3 className="font-semibold">{blog.title}</h3>
                   <p className="text-gray-400 text-sm truncate">{blog.intro}</p>
                 </li>

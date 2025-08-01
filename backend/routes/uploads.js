@@ -4,6 +4,7 @@ const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 
+
 const router = express.Router();
 
 // Ensure uploads directory exists
@@ -30,8 +31,10 @@ router.post('/upload', upload.single('file'), (req, res) => {
     return res.status(400).json({ error: 'No file uploaded' });
   }
 
-  const fileUrl = `/uploads/${req.file.filename}`;
-  res.status(200).json({ url: fileUrl });
+  // Construct full URL dynamically
+  const fullUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+  res.status(200).json({ url: fullUrl });
 });
+
 
 module.exports = router;
