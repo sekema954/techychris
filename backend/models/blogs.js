@@ -2,16 +2,16 @@ const mongoose = require('mongoose');
 
 const blogSchema = new mongoose.Schema({
   title: { type: String, required: true, trim: true },
-  slug: { type: String, required: true, unique: true, lowercase: true, trim: true },
-  intro: { type: String, default: '' },
-  middle_context: { type: String, default: '' },
-  conclusion: { type: String, default: '' },
-  content: { type: String, default: '' },
-  thumbnail: { type: String, default: '' },
+  slug: { type: String, required: true },
+  intro: { type: String, required:true },
+  middle_context: { type: String, required: true },
+  conclusion: { type: String, required:true },
+  content: { type: String, required:false },
+  thumbnail: { type: String, required:true },
   hero_image: { type: String, default: '' },
-  categories: { type: [String], default: [] },
-  tags: { type: [String], default: [] },
-  creator: { type: String, default: '' },
+  categories: { type: [String], required:true },
+  tags: { type: [String], required:true },
+  creator: { type: String, required:true },
 }, { timestamps: true });
 
 const Blog = mongoose.model('Blog', blogSchema);
