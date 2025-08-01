@@ -1,6 +1,7 @@
 // Frontend (React)
 import { useParams } from "react-router-dom";
 import useFetchBlogs from "../api/fetchblogs";
+import { LoadingSpinner } from "../components/loading";
 
 {/***type CommentType = {
   id: string;
@@ -18,7 +19,7 @@ const BlogDetail = () => {
 
 
 
-  if (isLoading) return <p className="text-white p-5">Loading...</p>;
+  if (isLoading) return <div className="bg-black"><LoadingSpinner title="blogs" /></div>;
   if (error) return <p className="text-white p-5">Failed to load blog data</p>;
 
 

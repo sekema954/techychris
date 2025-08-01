@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { UserCircle } from 'lucide-react';
+//import { UserCircle } from 'lucide-react';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import logo from '../assets/images/logo2.png';
 import { useLocation } from 'react-router-dom';
@@ -149,7 +149,7 @@ const Navbar = () => {
           Contact
         </button>
 
-        {/* Profile Dropdown */}
+        {/* Profile Dropdown *
         <div className="relative ml-6 z-[9999]" ref={profileRef}>
           <button
             aria-label="Profile Menu"
@@ -184,6 +184,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+        **/}
       </div>
 
       {/* Hamburger Button (Mobile) */}
