@@ -14,7 +14,7 @@ import useFetchBlogs from "../api/fetchblogs";
 
 const BlogDetail = () => {
   const { blogs, isLoading, error } = useFetchBlogs();
-  const { _id } = useParams();
+  const { id } = useParams();
 
 
 
@@ -22,8 +22,8 @@ const BlogDetail = () => {
   if (error) return <p className="text-white p-5">Failed to load blog data</p>;
 
 
-  const post = blogs.find((item) => item._id === _id);
-  console.log("URL param id:", _id); // check what comes from the URL
+  const post = blogs.find((item) => item._id === id);
+  console.log("URL param id:", id); // check what comes from the URL
   console.log("Fetched blog IDs:", blogs.map((b) => b._id)); // confirm structure
   if (!post) return <p className="text-white p-5">Blog post not found</p>;
 
@@ -69,7 +69,7 @@ const BlogDetail = () => {
             <h1 className="text-[20px] font-semibold">Recent Posts</h1>
             <div className="flex flex-col gap-5 mt-4">
               {blogs
-                .filter((item) => item._id !== _id)
+                .filter((item) => item._id !== id)
                 .slice(0, 4)
                 .map((item) => (
                   <a
