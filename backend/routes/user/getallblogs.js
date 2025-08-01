@@ -11,11 +11,7 @@ router.get('/get/blogs', async (req, res) => {
       return res.status(404).json({ message: 'No blogs found' });
     }
 
-    res.status(200).json({
-      success: true,
-      count: blogs.length,
-      data: blogs
-    });
+    res.status(200).json(blogs);
 
   } catch (error) {
     console.error('Error fetching blogs:', error.message);
