@@ -89,7 +89,7 @@ const AdminBlogs = () => {
           body: JSON.stringify(payload),
         });
       } else {
-        response = await fetch(`${import.meta.env.VITE_HEROKU_URL}/api/post/blogs`, {
+        response = await fetch(`${import.meta.env.VITE_HEROKU_URL}/api/get/blogs`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
