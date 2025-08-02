@@ -20,7 +20,7 @@ router.post('/post/blogs', async (req, res) => {
     } = req.body;
 
     // Validate required fields
-    if (!title || !slug || !middle_context || !conclusion || !thumbnail || !hero_image || !categories ||!tags || !creator || !intro) {
+    if (!title) {
       return res.status(400).json({
         success: false,
         message: 'Missing required fields: title and slug are required',
