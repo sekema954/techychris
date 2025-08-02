@@ -6,7 +6,6 @@ const blogSchema = new mongoose.Schema({
   intro: { type: String, required:true },
   middle_context: { type: String, required: true },
   conclusion: { type: String, required:true },
-  content: { type: String, required:false },
   thumbnail: { type: String, required:true },
   hero_image: { type: String, default: '' },
   categories: { type: [String], required:true },

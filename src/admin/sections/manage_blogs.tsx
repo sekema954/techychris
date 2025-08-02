@@ -8,7 +8,6 @@ const initialFormData = {
   intro: "",
   middle_context: "",
   conclusion: "",
-  content: "",
   thumbnail: "",
   hero_image: "",
   categories: "",
@@ -125,7 +124,6 @@ const AdminBlogs = () => {
       intro: blog.intro || "",
       middle_context: blog.middle_context || "",
       conclusion: blog.conclusion || "",
-      content: blog.content || "",
       thumbnail: blog.thumbnail || "",
       hero_image: blog.hero_image || "",
       categories: blog.categories?.join(", ") || "",
@@ -240,7 +238,6 @@ const AdminBlogs = () => {
           { label: "Intro", name: "intro" },
           { label: "Middle Context", name: "middle_context" },
           { label: "Conclusion", name: "conclusion" },
-          { label: "Content", name: "content" },
         ].map((field) => (
           <textarea
             key={field.name}
