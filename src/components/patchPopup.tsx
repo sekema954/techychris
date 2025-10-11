@@ -4,15 +4,15 @@ interface PatchNotesPopupProps {
   isOpen: boolean;
   onClose: () => void;
   patches: string[];
-  version?: string;   // e.g. "0.1"
-  date?: string;      // e.g. "2025-07-31"
+  version?: string;  
+  date?: string;      
 }
 
 const PatchNotesPopup: React.FC<PatchNotesPopupProps> = ({
   isOpen,
   onClose,
   patches,
-  version = "0.1",
+  version = "0.2",
   date = new Date().toLocaleDateString(),
 }) => {
   if (!isOpen) return null;

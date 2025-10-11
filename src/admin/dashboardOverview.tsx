@@ -26,11 +26,8 @@ const DashboardOverview: React.FC<DashboardOverviewProps> = ({
 
   // Patch notes to show
   const patches = [
-    "Implemented skeleton loading UI for products when no products are available.",
-    "Fixed issue where subscriber count was not displaying correctly in the dashboard.",
-    "Added loading states with skeleton placeholders for subscriber and blog counts.",
-    "Improved error handling and data fetching logic in subscriber hook.",
-    "Enhanced dashboard user experience with better visual feedback during data loading."
+    "Updated discord link.",
+    "Adding courses section",
   ];
 
   // State to control popup visibility
