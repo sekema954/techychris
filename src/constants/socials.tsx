@@ -33,7 +33,7 @@ export const Socials = [
           id: '4',
           title: 'Discord',
           icon: faDiscord,
-          link: 'https://discord.gg/QgjVAsbQCH',
+          link: 'https://discord.com/invite/QgjVAsbQCH',
           backgroundColor: '#7289DA',
         },
         {
