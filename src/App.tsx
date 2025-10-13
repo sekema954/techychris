@@ -10,7 +10,7 @@ import BlogHome from './pages/Blog';
 import YoutubeVideos from './pages/videos';
 import CoursePage from './pages/courses';
 import ShopPage from './pages/shop';
-import AboutPage from './pages/about';
+import ServicePage from './pages/services';
 import Privacy_Policy from './resources/privacy';
 import Terms_Conditions from './resources/terms_conditions';
 import AdminDashboard from './admin/dashbaord';
@@ -65,7 +65,7 @@ const App = () => {
           <Route path="/videos" element={<YoutubeVideos />} />
           <Route path="/courses" element={<CoursePage />} />
           <Route path="/shop" element={<ShopPage />} />
-          <Route path="/about" element={<AboutPage />} />
+          <Route path="/services" element={<ServicePage />} />
           <Route path="/privacy" element={<Privacy_Policy />} />
           <Route path="/terms_conditions" element={<Terms_Conditions />} />
 

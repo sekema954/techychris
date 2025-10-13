@@ -49,7 +49,7 @@ const Navbar = () => {
 
   const navLinks = [
     { id: 1, title: 'Home', path: '/' },
-    { id: 2, title: 'About', path: '/about' },
+    { id: 2, title: 'Services', path: '/services' },
     { id: 3, title: 'Blog', path: '/blog' },
     { id: 4, title: 'Videos', path: '/videos' },
   ];

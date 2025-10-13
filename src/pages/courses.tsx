@@ -10,7 +10,7 @@ const CoursePage = () => {
       <header className="bg-gradient-to-r from-cyan-600 to-blue-800 py-20 px-4 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <h1 className="text-5xl font-extrabold z-10 relative text-white animate__animated animate__fadeIn">
-          Welcome to the Ultimate Learning Hub
+          Welcome to the Ultimate Lea rning Hub
         </h1>
         <p className="mt-4 text-lg z-10 relative text-white animate__animated animate__fadeIn animate__delay-1s">
           Learn, grow, and succeed with our top-notch courses designed to accelerate your career!
