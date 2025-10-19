@@ -21,6 +21,7 @@ const BlogDetail = () => {
 
 
 
+
   if (isLoading) return <div className="bg-black"><LoadingSpinner title="blogs" /></div>;
   if (error) return <p className="text-white p-5">Failed to load blog data</p>;
 

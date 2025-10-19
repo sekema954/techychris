@@ -17,6 +17,9 @@ const RecentBlogs = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
 
+    console.log(blogs);
+
+
   useEffect(() => {
     if (!headerRef.current || !titleRef.current || !subtitleRef.current) return;
 

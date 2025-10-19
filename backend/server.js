@@ -77,7 +77,7 @@ const writeData = (filePath, data) => {
 
 
 app.use(express.static(path.join(__dirname, '..', 'dist')));
-
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')))
 app.get('/*splat', (req, res)=>{
     res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'))
 })
