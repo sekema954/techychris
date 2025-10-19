@@ -17,7 +17,7 @@ const RecentBlogs = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
 
-    console.log(blogs);
+    console.log('blogs:', blogs);
 
 
   useEffect(() => {
