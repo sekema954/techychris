@@ -59,14 +59,14 @@ const Navbar = () => {
   return (
     <nav className={`h-[100px] flex items-center justify-between bg-[#171723] text-white lg:px-10 px-5 ${isFixed ? 'fixed w-full z-[1000]' : ''}`}>
       {/* Left: Logo */}
-      <div>
+      <a href='/' aria-label='techychris logo icon'>
         <img
-          className="w-[70px] h-[60px] rounded-full"
+          className="w-[40px] h-[40px] rounded-full"
           src={logo}
           alt="TechyChris Logo Icon"
           aria-label="TechyChris Logo Icon"
         />
-      </div>
+      </a>
 
       {/* Center: Nav links */}
       <ul className="hidden lg:flex gap-10">
