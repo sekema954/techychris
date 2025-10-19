@@ -67,7 +67,7 @@ const DashboardOverview: React.FC<DashboardOverviewProps> = ({
 
           {/* Products */}
           <div className="bg-gray-800 p-6 rounded shadow">
-            <h3 className="text-xl font-semibold">Products</h3>
+            <h3 className="text-xl font-semibold">Courses</h3>
             {/* Always show skeleton loader since no products yet */}
             <div className="h-8 w-16 bg-gray-600 animate-pulse rounded mt-2" />
           </div>

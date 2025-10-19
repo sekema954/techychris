@@ -124,7 +124,7 @@ const BlogHome = () => {
             className="bg-[#1E1C2E] rounded-lg overflow-hidden shadow-md"
           >
             <img
-              src={blog.thumbnail || "https://via.placeholder.com/400x200.png?text=Blog+Image"}
+              src={blog.thumbnail}
               alt="Blog Thumbnail"
               className="w-full h-40 object-cover"
             />

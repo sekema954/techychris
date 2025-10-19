@@ -8,11 +8,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { LoadingSpinner } from "../components/loading";
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 const RecentBlogs = () => {
   const { blogs, isLoading } = useFetchBlogs();
-
   const headerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
@@ -101,13 +101,7 @@ const RecentBlogs = () => {
                 Read more
               </a>
             }
-            thumbnail={
-              <img
-                src={blog.thumbnail}
-                alt={blog.title}
-                className="w-full h-48 object-cover rounded-t-md"
-              />
-            }
+            thumbnail={blog.thumbnail}
             className="bg-[#1A1D2E] border border-[#2C2F3F] text-white"
           />
         ))}

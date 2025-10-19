@@ -19,10 +19,10 @@ router.post('/post/blogs', async (req, res) => {
     } = req.body;
 
     // Validate required fields
-    if (!title) {
+    if (!title || !slug || !intro || !middle_context || !conclusion || !categories || !tags || !creator) {
       return res.status(400).json({
         success: false,
-        message: 'Missing required fields: title and slug are required',
+        message: 'Missing required fields',
       });
     }
 
@@ -56,6 +56,8 @@ router.post('/post/blogs', async (req, res) => {
 
     const savedBlog = await newBlog.save();
     res.status(201).json({ success: true, data: savedBlog });
+
+    if(!savedBlog) throw new Error("Failed to save blog");
 
   } catch (error) {
     console.error('Error creating blog:', error.message);

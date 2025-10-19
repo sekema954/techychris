@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { cn } from "../../../libs/utils";
 import { faClipboard } from "@fortawesome/free-solid-svg-icons";
-import placeholder from "../../assets/images/placeholder.jpg";
 
 export const BentoGrid = ({
   className,
@@ -30,7 +29,7 @@ export const BentoGridItem = ({
   title?: string | React.ReactNode;
   description?: string | React.ReactNode;
   slug?: string | React.ReactNode;
-  thumbnail?: string | any; // changed to string for easier <img> fallback
+  thumbnail?: string | any; 
 }) => {
   return (
     <div
@@ -43,7 +42,7 @@ export const BentoGridItem = ({
       {/* Thumbnail section with fallback */}
       <div className="w-full h-48 bg-black overflow-hidden">
         <img
-          src={thumbnail || placeholder}
+          src={thumbnail}
           alt={title?.toString() || "Card thumbnail"}
           className="w-full h-full object-cover"
         />

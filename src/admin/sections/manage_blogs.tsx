@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useFetchBlogs from "../../api/fetchblogs";
 import MessageAlert from "../../components/messageAlert";
+import placeholder from '../../assets/images/placeholder_image.jpg';
 
 const initialFormData = {
   title: "",
@@ -77,6 +78,8 @@ const AdminBlogs = () => {
       ...formData,
       categories: formData.categories.split(",").map((c) => c.trim()),
       tags: formData.tags.split(",").map((t) => t.trim()),
+      thumbnail: formData.thumbnail || placeholder,
+      hero_image: formData.hero_image || placeholder
     };
 
     try {

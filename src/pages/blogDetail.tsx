@@ -2,6 +2,8 @@
 import { useParams } from "react-router-dom";
 import useFetchBlogs from "../api/fetchblogs";
 import { LoadingSpinner } from "../components/loading";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 {/***type CommentType = {
   id: string;
@@ -57,12 +59,19 @@ const BlogDetail = () => {
         <aside>
           <div className="py-7 mt-5 bg-[#171723] px-3">
             <h1 className="text-[20px]">Categories</h1>
-            <div className="flex flex-col gap-6 mt-6">
-              {post.categories.map((category, index) => (
-                <div key={index}>
-                  <span>{category}</span>
-                </div>
-              ))}
+            <div className="flex flex-col gap-4 mt-2">
+              {post.categories
+                .sort((a, b) => a.localeCompare(b)) // sort alphabetically
+                .slice(0, 5) // pick first 5 categories
+                .map((category, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-2 bg-[#2a293d] hover:bg-[#3b3950] px-3 py-1 rounded transition"
+                  >
+                    <FontAwesomeIcon icon={faStar} className="text-yellow-400" />
+                    <span className="text-white font-medium">{category}</span>
+                  </div>
+                ))}
             </div>
           </div>
 
