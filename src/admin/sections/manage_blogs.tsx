@@ -50,6 +50,7 @@ const AdminBlogs = () => {
     try {
       const formDataUpload = new FormData();
       formDataUpload.append("file", file);
+
       const response = await fetch(`${import.meta.env.VITE_HEROKU_URL}/api/upload`, {
         method: "POST",
         body: formDataUpload,
@@ -60,7 +61,7 @@ const AdminBlogs = () => {
       const data = await response.json();
       setFormData((prev) => ({
         ...prev,
-        [field]: data.url,
+        [field]: data.url, // store Cloudinary URL
       }));
     } catch (error) {
       console.error("Upload error:", error);
@@ -69,6 +70,7 @@ const AdminBlogs = () => {
       setUploadingField(null);
     }
   };
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
