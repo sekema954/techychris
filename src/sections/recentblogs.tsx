@@ -1,12 +1,10 @@
 import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import useFetchBlogs from "../api/fetchblogs";
 import { BentoGrid, BentoGridItem } from "../components/ui/bento-grid";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { LoadingSpinner } from "../components/loading";
+import { blogsHeader, SectionHeader } from "../components/sectionHeader";
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -70,25 +68,15 @@ const RecentBlogs = () => {
   return (
   <div className="min-h-screen flex flex-col bg-[#0D0F1A]">
     <section className="py-12 flex-grow w-full px-4 sm:px-6 md:px-8 max-w-[1600px] mx-auto">
-      <header
-        ref={headerRef}
-        className="text-center mb-12"
-        style={{ perspective: "1000px" }}
-      >
-        <h1
-          ref={titleRef}
-          className="text-white text-[32px] sm:text-[40px] md:text-[48px] lg:text-[60px] font-extrabold tracking-wide drop-shadow-md"
-        >
-          RECENT BLOGS
-        </h1>
-        <p
-          ref={subtitleRef}
-          className="text-base sm:text-lg text-gray-300 mt-4 max-w-xl mx-auto leading-relaxed"
-        >
-          Stay connected and learn about the newest IT trends
-        </p>
-      </header>
-
+        <div className="lg:px-30 text-white">
+              {blogsHeader.map((s, _)=>(
+                <SectionHeader 
+                title={s.title} 
+                buttonText={s.buttonText}
+                subContext={s.subContext} 
+                buttonLink={s.buttonLink} />
+            ))}
+            </div>
       <BentoGrid className="w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {blogs.slice(0, 5).map((blog, _) => (
           <BentoGridItem
@@ -110,15 +98,6 @@ const RecentBlogs = () => {
         ))}
       </BentoGrid>
     </section>
-
-    <footer className="flex justify-center py-8 bg-transparent">
-      <Link to="/blog">
-        <button className="h-[48px] min-w-[150px] bg-[#165DFB] hover:bg-blue-600 text-white rounded-md flex items-center justify-center px-4 text-sm sm:text-base">
-          See more
-          <FontAwesomeIcon className="ml-3" icon={faArrowRight} />
-        </button>
-      </Link>
-    </footer>
   </div>
   );
 };

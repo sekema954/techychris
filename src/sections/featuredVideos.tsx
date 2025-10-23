@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FaPlay } from 'react-icons/fa';
 import { LoadingSpinner } from '../components/loading';
+import { SectionHeader, videosHeader } from '../components/sectionHeader';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const CHANNEL_ID = import.meta.env.VITE_CHANNEL_ID;
@@ -39,17 +40,20 @@ const FeaturedYoutubeVideos = () => {
   };
 
   return (
-    <section className="bg-[#1E1B2E] py-20 px-6 text-white">
+    <section className="bg-[#1E1B2E] lg:py-10 py-6 px-6 text-white">
       <div className="max-w-6xl mx-auto">
-        <header className='text-center py-10 flex flex-col gap-5'>
-            <h2 className="text-4xl md:text-5xl font-bold text-white text-center">
-            Featured Videos
-          </h2>
-          <p>Watch my latest youtube videos</p>
-        </header>
+      <div className="lg:px-30 px-4 text-white">
+         {videosHeader.map((s, _)=>(
+           <SectionHeader 
+           title={s.title} 
+           buttonText={s.buttonText}
+           subContext={s.subContext} 
+           buttonLink={s.buttonLink} />
+       ))}
+       </div>
 
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 auto-rows-[250px] md:auto-rows-[300px] gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 auto-rows-[250px] md:auto-rows-[300px] gap-6 py-10">
           {videos
             .sort(() => 0.5 - Math.random())
             .map((video, index) => {

@@ -1,6 +1,10 @@
+import { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
   const actions = [
@@ -22,8 +26,29 @@ const Contact = () => {
   ];
 
   const [loaded, setLoaded] = useState(false);
+  const actionsRef = useRef<HTMLAnchorElement[]>([]);
+
   useEffect(() => {
     setLoaded(true);
+
+    // Animate each action card on scroll
+    actionsRef.current.forEach((el, i) => {
+      if (!el) return;
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: i * 0.2,
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 80%',
+          },
+        }
+      );
+    });
   }, []);
 
   return (
@@ -51,7 +76,8 @@ const Contact = () => {
                 href={action.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-white rounded-2xl shadow-lg py-6 px-8 cursor-pointer hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row md:items-center md:justify-between border border-transparent hover:border-indigo-400"
+                ref={(el) => { actionsRef.current[idx] = el!; }}
+                className="group bg-white rounded-2xl shadow-lg py-6 px-8 cursor-pointer hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row md:items-center md:justify-between border border-transparent hover:border-indigo-400 text-center"
               >
                 <div className="mb-3 md:mb-0">
                   <h2 className="text-indigo-900 text-xl font-semibold group-hover:text-indigo-700 transition-colors">

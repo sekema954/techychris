@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Divider from "../components/divider";
 import { Services } from "../constants/services";
 import { CardSpotlight } from "../components/ui/card-spotlight";
+import { SectionHeader, servicesHeader } from "../components/sectionHeader";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,17 +31,19 @@ const Quality_Services = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-[#0F0F1B] py-24">
-      <header className="text-center px-4 max-w-4xl mx-auto">
-        <h1 className="text-white text-[40px] sm:text-[56px] font-extrabold mb-4 leading-tight">
-          My Quality Services
-        </h1>
-        <p className="text-gray-400 text-lg sm:text-xl">
-          Offering reliable, efficient, and tailored solutions to meet your business and technical needs — crafted with precision and built for performance.
-        </p>
-      </header>
+    <section ref={sectionRef} className="bg-[#0F0F1B] lg:py-24 py-15">
+      <div className="lg:px-30 px-4 text-white">
+        {servicesHeader.map((s, _)=>(
+          <SectionHeader 
+          title={s.title} 
+          buttonText={s.buttonText}
+          subContext={s.subContext} 
+          buttonLink={s.buttonLink} />
+      ))}
+      </div>
 
-      <div className="flex justify-center mt-20 px-4">
+
+      <div className="flex justify-center px-4">
         <div className="grid gap-10 grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 max-w-7xl w-full">
       {Services.map((service, index) => (
             <CardSpotlight
