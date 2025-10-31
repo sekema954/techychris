@@ -43,8 +43,8 @@ const Quality_Services = () => {
       </div>
 
 
-      <div className="flex justify-center px-4">
-        <div className="grid gap-10 grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 max-w-7xl w-full">
+      <div className="flex lg:px-30 px-5">
+        <div className="grid gap-5 grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 max-w-7xl w-full">
       {Services.map((service, index) => (
             <CardSpotlight
               key={service.id}

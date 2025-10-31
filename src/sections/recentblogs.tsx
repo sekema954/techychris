@@ -66,9 +66,9 @@ const RecentBlogs = () => {
     );
 
   return (
-  <div className="min-h-screen flex flex-col bg-[#0D0F1A]">
-    <section className="py-12 flex-grow w-full px-4 sm:px-6 md:px-8 max-w-[1600px] mx-auto">
-        <div className="lg:px-30 text-white">
+  <div className="min-h-screen flex flex-col bg-[#0D0F1A] lg:px-30">
+    <section className="py-12 flex-grow w-full px-4 sm:px-6 max-w-[1600px]">
+        <div className="text-white">
               {blogsHeader.map((s, _)=>(
                 <SectionHeader 
                 title={s.title} 
