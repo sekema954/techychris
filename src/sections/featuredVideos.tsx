@@ -40,7 +40,7 @@ const FeaturedYoutubeVideos = () => {
   };
 
   return (
-    <section className="bg-[#1E1B2E] lg:py-10 py-6 text-white">
+    <section className="bg-[#1E1B2E] lg:py-10 p-5 text-white">
       <div className="max-w-6xl mx-auto">
       <div className="text-white">
          {videosHeader.map((s, _)=>(

@@ -7,21 +7,22 @@ interface PropHeader{
 
 import star from '../assets/images/stars.png';
 
-export const SectionHeader = ({title, buttonText, subContext, buttonLink}:PropHeader) => {
-    return(
-        <header className='flex items-center justify-between gap-4'>
-            <div className='flex flex-col gap-3'>
-                <img className='w-[68px] h-[34px]' src={star} alt="estatein" aria-label='estatien' />
-                <h1 className='font-semibold lg:text-[48px] text-[28px]'>{title}</h1>
-                <p className='text-[#999999] font-meduim text-[18px]'>{subContext}</p>
-            </div>
+export const SectionHeader = ({ title, buttonText, subContext, buttonLink }: PropHeader) => {
+  return (
+    <header className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+      <div className="flex flex-col gap-3">
+        <img className="w-[68px] h-[34px]" src={star} alt="estatein" aria-label="estatein" />
+        <h1 className="font-semibold lg:text-[48px] text-[28px]">{title}</h1>
+        <p className="text-[#999999] font-medium text-[18px]">{subContext}</p>
+      </div>
 
-            <a className='hidden lg:flex' href={buttonLink} type='button' aria-label='estatein'>
-                <button className='w-[196px] h-[59px] bg-blue-600 border border-[#363636] rounded-lg transition-all duration-[0.5s] hover:bg-blue-700'>{buttonText}</button>
-            </a>
-        </header>
-    )
-
+      <a href={buttonLink} aria-label="estatein" className="mt-4 lg:mt-0">
+        <button className="px-3 w-full sm:w-[140px] md:w-[160px] lg:w-[196px] h-[50px] sm:h-[44px] bg-blue-600 border border-[#363636] rounded-lg text-white font-medium transition-all duration-500 hover:bg-blue-700">
+          {buttonText}
+        </button>
+      </a>
+    </header>
+  );
 };
 
 

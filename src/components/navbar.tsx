@@ -155,14 +155,19 @@ const Navbar = () => {
           className="lg:hidden flex flex-col gap-1 z-[1001]"
           aria-label="Menu"
         >
-          {[1, 2, 3].map((id) => (
-            <span
-              key={id}
-              className={`w-6 h-[2px] bg-white transition-all ${
-                menuOpen ? 'rotate-45 translate-y-1' : ''
-              }`}
-            ></span>
-          ))}
+          <div className="flex flex-col justify-between w-6 h-6">
+            {[1, 2, 3].map((id) => {
+              let classes = 'w-6 h-[2px] bg-white transition-all duration-300';
+              
+              if (menuOpen) {
+                if (id === 1) classes += ' rotate-45 translate-y-[14px]';
+                if (id === 2) classes += ' scale-0';
+                if (id === 3) classes += ' -rotate-45 -translate-y-2';
+              }
+
+              return <span key={id} className={classes}></span>;
+            })}
+          </div>
         </button>
 
         {/* Mobile Menu */}
