@@ -50,10 +50,7 @@ const useFetchBlogs = () => {
       ? `${import.meta.env.VITE_HEROKU_URL}/api/blogs`
       : "http://localhost:3000/api/blogs"; //endpoint{**/}
     try {
-       const url  = import.meta.env.MODE === 'development'
-      ?`${import.meta.env.VITE_DEV_URL}/api/get/blogs`
-      :`${import.meta.env.VITE_PROD_URL}/api/get/blogs`
-      const response = await fetch(url, {
+      const response = await fetch("https://www.techychris.com/api/get/blogs", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });

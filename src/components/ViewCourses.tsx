@@ -25,7 +25,7 @@ export const ViewCourses = () => {
 
                 {/* Call-to-action */}
                 <a
-                    href="/courses"
+                    href="/"
                     className="relative z-10 mt-8 px-8 py-3 rounded-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold text-lg shadow-lg shadow-cyan-500/30 transition-all duration-300 hover:scale-105"
                 >
                     Explore Courses
