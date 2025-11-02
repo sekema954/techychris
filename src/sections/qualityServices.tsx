@@ -5,6 +5,7 @@ import Divider from "../components/divider";
 import { Services } from "../constants/services";
 import { CardSpotlight } from "../components/ui/card-spotlight";
 import { SectionHeader, servicesHeader } from "../components/sectionHeader";
+import pattern from '../assets/images/Frame.png'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,7 +32,12 @@ const Quality_Services = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-[#0F0F1B] lg:py-24 py-15">
+    <section ref={sectionRef} className="relative min-h-screen bg-[#0F0F1B] lg:py-24 py-15">
+         <img
+          src={pattern}
+          alt="background pattern"
+          className="pointer-events-none absolute top-0 left-0 w-full h-full object-cover opacity-15 z-0"
+        />
       <div className="lg:px-30 px-4 text-white">
         {servicesHeader.map((s, _)=>(
           <SectionHeader 

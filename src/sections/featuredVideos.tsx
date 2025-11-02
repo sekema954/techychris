@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaPlay } from 'react-icons/fa';
 import { LoadingSpinner } from '../components/loading';
 import { SectionHeader, videosHeader } from '../components/sectionHeader';
+import pattern from '../assets/images/pattern.png'
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const CHANNEL_ID = import.meta.env.VITE_CHANNEL_ID;
@@ -40,7 +41,12 @@ const FeaturedYoutubeVideos = () => {
   };
 
   return (
-    <section className="bg-[#1E1B2E] lg:py-10 p-5 text-white">
+    <section className="min-h-screen relative bg-[#1E1B2E] lg:py-10 p-5 text-white">
+         <img
+          src={pattern}
+          alt="background pattern"
+          className="pointer-events-none absolute top-0 left-0 w-full h-full object-cover opacity-10 z-0"
+      />
       <div className="max-w-6xl mx-auto">
       <div className="text-white">
          {videosHeader.map((s, _)=>(

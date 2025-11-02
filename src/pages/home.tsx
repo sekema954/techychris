@@ -7,6 +7,7 @@ import VideoBackground from "../sections/animatedbackground"
 import Quality_Services from "../sections/qualityServices"
 import RecentBlogs from "../sections/recentblogs"
 import FeaturedYoutubeVideos from "../sections/featuredVideos"
+import { ViewCourses } from "../components/ViewCourses"
 
 const Home = () =>{
     return(
@@ -17,6 +18,7 @@ const Home = () =>{
         <RecentBlogs />
         <Subscribe />
         <FeaturedYoutubeVideos />
+        <ViewCourses />
         <Contact />
      </>
     )

@@ -1,3 +1,202 @@
 [
-    
+  {
+    "title": "React and Tailwind CSS Masterclass",
+    "instructor": "Samuel Ekema",
+    "sypnosis": "Master the art of building stunning, responsive web applications using React and Tailwind CSS. Learn how to structure scalable projects, optimize for performance, and design modern UIs that users love.",
+    "rating": 4.9,
+    "price": 149.99,
+    "discount": 20,
+    "tage": ["React", "Tailwind", "Frontend"],
+    "link": "https://example.com/react-tailwind"
+  },
+  {
+    "title": "Machine Learning A–Z",
+    "instructor": "Dr. Alice Brown",
+    "sypnosis": "Dive deep into the world of artificial intelligence with this hands-on course. You'll cover supervised and unsupervised learning, neural networks, and real-world projects using Python and Scikit-Learn.",
+    "rating": 4.8,
+    "price": 249.99,
+    "discount": 25,
+    "tage": ["Machine Learning", "AI", "Python"],
+    "link": "https://example.com/machine-learning"
+  },
+  {
+    "title": "UI/UX Design Fundamentals",
+    "instructor": "Laura Green",
+    "sypnosis": "Learn the core principles of user-centered design. This course walks you through creating wireframes, interactive prototypes, and high-fidelity designs using Figma while focusing on user psychology.",
+    "rating": 4.5,
+    "price": 89.99,
+    "discount": 15,
+    "tage": ["Design", "Figma", "UI/UX"],
+    "link": "https://example.com/uiux-fundamentals"
+  },
+  {
+    "title": "Node.js and Express Backend Bootcamp",
+    "instructor": "Mark Johnson",
+    "sypnosis": "Learn backend development using Node.js and Express. Build RESTful APIs, connect to MongoDB, implement authentication, and deploy full-scale applications in production environments.",
+    "rating": 4.7,
+    "price": 179.99,
+    "discount": 30,
+    "tage": ["Node.js", "Backend", "Express", "MongoDB"],
+    "link": "https://example.com/node-express"
+  },
+  {
+    "title": "Full-Stack JavaScript Developer",
+    "instructor": "Emily Stone",
+    "sypnosis": "Become a professional full-stack JavaScript developer by mastering both frontend and backend technologies including React, Node.js, Express, and MongoDB through practical projects.",
+    "rating": 4.9,
+    "price": 299.99,
+    "discount": 20,
+    "tage": ["Full Stack", "JavaScript", "React", "Node.js"],
+    "link": "https://example.com/fullstack-js"
+  },
+  {
+    "title": "Data Structures and Algorithms in JavaScript",
+    "instructor": "Michael Chen",
+    "sypnosis": "Develop strong problem-solving skills by mastering algorithms and data structures. Learn sorting, searching, recursion, and optimization techniques to ace technical interviews.",
+    "rating": 4.6,
+    "price": 119.99,
+    "discount": 10,
+    "tage": ["Algorithms", "JavaScript", "DSA"],
+    "link": "https://example.com/js-dsa"
+  },
+  {
+    "title": "Python for Data Science and Analytics",
+    "instructor": "Dr. Olivia Smith",
+    "sypnosis": "Explore Python’s data science ecosystem including Pandas, NumPy, Matplotlib, and Seaborn. Analyze real-world datasets and build predictive models with ease.",
+    "rating": 4.8,
+    "price": 159.99,
+    "discount": 25,
+    "tage": ["Python", "Data Science", "Analytics"],
+    "link": "https://example.com/python-data"
+  },
+  {
+    "title": "Advanced CSS Animations and Transitions",
+    "instructor": "Samuel Ekema",
+    "sypnosis": "Push your frontend skills further by mastering CSS transitions, keyframe animations, and motion design principles to bring your web pages to life.",
+    "rating": 4.7,
+    "price": 99.99,
+    "discount": 20,
+    "tage": ["CSS", "Animations", "Frontend"],
+    "link": "https://example.com/css-animations"
+  },
+  {
+    "title": "MongoDB Deep Dive",
+    "instructor": "Chris Martin",
+    "sypnosis": "Get comfortable with MongoDB by learning how to design schemas, query efficiently, and integrate with Node.js applications using Mongoose ORM.",
+    "rating": 4.5,
+    "price": 139.99,
+    "discount": 15,
+    "tage": ["MongoDB", "Database", "Backend"],
+    "link": "https://example.com/mongodb"
+  },
+  {
+    "title": "DevOps with Docker and Kubernetes",
+    "instructor": "Sophia Turner",
+    "sypnosis": "Gain hands-on experience with containerization and orchestration using Docker and Kubernetes. Learn how to deploy, manage, and scale applications efficiently.",
+    "rating": 4.9,
+    "price": 259.99,
+    "discount": 30,
+    "tage": ["DevOps", "Docker", "Kubernetes"],
+    "link": "https://example.com/devops"
+  },
+  {
+    "title": "TypeScript for React Developers",
+    "instructor": "Samuel Ekema",
+    "sypnosis": "Learn how to harness the power of TypeScript in React projects for safer and more scalable codebases. This course covers types, interfaces, generics, and best practices.",
+    "rating": 4.8,
+    "price": 129.99,
+    "discount": 20,
+    "tage": ["TypeScript", "React", "Frontend"],
+    "link": "https://example.com/ts-react"
+  },
+  {
+    "title": "Building REST APIs with FastAPI",
+    "instructor": "Ethan Lewis",
+    "sypnosis": "Build high-performance APIs using Python’s modern web framework FastAPI. Learn about async endpoints, Pydantic models, and JWT authentication.",
+    "rating": 4.7,
+    "price": 149.99,
+    "discount": 25,
+    "tage": ["Python", "FastAPI", "Backend"],
+    "link": "https://example.com/fastapi"
+  },
+  {
+    "title": "Cloud Computing Essentials with AWS",
+    "instructor": "Rachel Adams",
+    "sypnosis": "Understand the fundamentals of cloud infrastructure and services using AWS. Learn about EC2, S3, Lambda, and IAM while deploying scalable web applications.",
+    "rating": 4.6,
+    "price": 199.99,
+    "discount": 20,
+    "tage": ["AWS", "Cloud", "DevOps"],
+    "link": "https://example.com/aws"
+  },
+  {
+    "title": "Responsive Web Design for Beginners",
+    "instructor": "Tom Richards",
+    "sypnosis": "Learn the principles of responsive design to ensure your websites look amazing on all devices. Master flexbox, grid, and media queries with hands-on projects.",
+    "rating": 4.5,
+    "price": 89.99,
+    "discount": 15,
+    "tage": ["CSS", "Responsive", "HTML"],
+    "link": "https://example.com/responsive-design"
+  },
+  {
+    "title": "Next.js 14 — The Complete Guide",
+    "instructor": "Samuel Ekema",
+    "sypnosis": "Unlock the power of Next.js 14 for modern React development. Learn about SSR, static generation, API routes, and how to deploy optimized production builds.",
+    "rating": 4.9,
+    "price": 189.99,
+    "discount": 20,
+    "tage": ["Next.js", "React", "Frontend"],
+    "link": "https://example.com/nextjs"
+  },
+  {
+    "title": "Cybersecurity for Developers",
+    "instructor": "Dr. Amanda Grey",
+    "sypnosis": "Learn to identify and mitigate security risks in web applications. Understand encryption, authentication, and best practices for protecting user data.",
+    "rating": 4.8,
+    "price": 169.99,
+    "discount": 25,
+    "tage": ["Security", "Cybersecurity", "Web"],
+    "link": "https://example.com/cybersecurity"
+  },
+  {
+    "title": "Introduction to Artificial Intelligence",
+    "instructor": "Dr. John Miller",
+    "sypnosis": "Explore the foundations of AI including machine learning, natural language processing, and computer vision with hands-on Python examples.",
+    "rating": 4.7,
+    "price": 219.99,
+    "discount": 30,
+    "tage": ["AI", "Machine Learning", "Python"],
+    "link": "https://example.com/ai-intro"
+  },
+  {
+    "title": "Building Modern Portfolios with React",
+    "instructor": "Samuel Ekema",
+    "sypnosis": "Learn to build stunning personal portfolios using React, Tailwind CSS, and Framer Motion. Showcase your skills with animations, interactivity, and responsive design.",
+    "rating": 4.9,
+    "price": 109.99,
+    "discount": 15,
+    "tage": ["React", "Portfolio", "Frontend"],
+    "link": "https://example.com/react-portfolio"
+  },
+  {
+    "title": "Database Design and SQL Mastery",
+    "instructor": "Jacob Wilson",
+    "sypnosis": "Gain mastery in relational database design and SQL. Learn to create optimized queries, design schemas, and integrate databases into full-stack applications.",
+    "rating": 4.6,
+    "price": 129.99,
+    "discount": 20,
+    "tage": ["SQL", "Database", "Backend"],
+    "link": "https://example.com/sql-mastery"
+  },
+  {
+    "title": "Building SaaS Apps with the MERN Stack",
+    "instructor": "Samuel Ekema",
+    "sypnosis": "Turn your full-stack skills into a profitable business by learning how to architect, build, and deploy subscription-based SaaS applications using MongoDB, Express, React, and Node.js.",
+    "rating": 5.0,
+    "price": 299.99,
+    "discount": 25,
+    "tage": ["SaaS", "MERN", "Full Stack"],
+    "link": "https://example.com/mern-saas"
+  }
 ]

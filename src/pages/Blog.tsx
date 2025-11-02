@@ -1,6 +1,7 @@
 import { useState} from "react";
 import useFetchBlogs from "../api/fetchblogs";
 import { LoadingSpinner } from "../components/loading";
+import pattern from '../assets/images/Frame.png'
 
 const BlogHome = () => {
   const { blogs, isLoading } = useFetchBlogs();
@@ -61,7 +62,12 @@ const BlogHome = () => {
   };
 
   return (
-    <section className="bg-[#2D2A41] min-h-screen text-white px-4 md:px-16 py-40">
+    <section className="relative bg-[#2D2A41] min-h-screen text-white px-4 md:px-16 py-40">
+      <img
+        src={pattern}
+        alt="background pattern"
+        className="pointer-events-none absolute top-0 left-0 w-full h-full object-cover opacity-10 z-0"
+      />
       {/* Welcome Text */}
       <h1 className="text-3xl md:text-4xl font-bold mb-2">Welcome to TechyChris Blogs</h1>
       <p className="mb-6 text-gray-300 max-w-xl">

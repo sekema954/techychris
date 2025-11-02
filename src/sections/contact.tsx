@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import pattern from '../assets/images/Frame.png'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -52,7 +53,12 @@ const Contact = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-[#1D1B2E] to-[#262244] py-20 px-6 flex items-center justify-center">
+    <div className="relative min-h-screen bg-gradient-to-tr from-[#1D1B2E] to-[#262244] py-20 px-6 flex items-center justify-center">
+         <img
+          src={pattern}
+          alt="background pattern"
+          className="pointer-events-none absolute top-0 left-0 w-full h-full object-cover opacity-30 z-0"
+        />
       <div
         className={`max-w-6xl w-full bg-white rounded-3xl shadow-2xl grid grid-cols-1 lg:grid-cols-12 overflow-hidden
           transition-all duration-700 ease-in-out transform 

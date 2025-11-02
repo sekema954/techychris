@@ -1,58 +1,171 @@
-import useFetchCourses from "../api/fetchcourses";
-import ComingSoon from "./comingSoon";
+import { useState } from "react";
+import { LoadingSpinner } from "../components/loading";
+import { useFetchCourses } from "../api/fetchcourses";
+import { CourseCard } from "../components/courseCard";
+import pattern from '../assets/images/Frame.png'
 
-const CoursePage = () => {
-  const { isLoading, courses } = useFetchCourses();
+const Courses = () => {
+  const { courses, isLoading } = useFetchCourses();
+
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [searchVal, setSearchVal] = useState<string>("");
+  const [filteredCourses, setFilteredCourses] = useState<any[]>([]);
+  const [isSearching, setIsSearching] = useState<boolean>(false);
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const coursesPerPage = 6;
+
+  // Handle input change
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  // Handle Search submit
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!searchTerm.trim()) return;
+
+    const lower = searchTerm.toLowerCase();
+    const results = courses.filter(
+      (course) =>
+        course.title?.toLowerCase().includes(lower) ||
+        course.instructor?.toLowerCase().includes(lower) ||
+        course.tags?.some((tag: string) => tag.toLowerCase().includes(lower))
+    );
+    setFilteredCourses(results);
+    setSearchVal(searchTerm);
+    setIsSearching(true);
+  };
+
+  // Handle "Show All"
+  const handleShowAll = () => {
+    setIsSearching(false);
+    setSearchTerm("");
+    setSearchVal("");
+    setCurrentPage(1);
+  };
+
+  // Pagination logic
+  const totalPages = Math.ceil(courses.length / coursesPerPage);
+  const indexOfLastCourse = currentPage * coursesPerPage;
+  const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
+  const currentCourses = courses.slice(indexOfFirstCourse, indexOfLastCourse);
+
+  // Pagination handlers
+  const handleNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
+  };
 
   return (
-    <div className="bg-gray-900 text-white min-h-screen flex flex-col py-34">
+    <section className="relative bg-[#2D2A41] min-h-screen text-white px-4 md:px-16 py-40">
       {/* Header */}
-      <header className="bg-gradient-to-r from-cyan-600 to-blue-800 py-20 px-4 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-        <h1 className="text-5xl font-extrabold z-10 relative text-white animate__animated animate__fadeIn">
-          Welcome to the Ultimate Lea rning Hub
-        </h1>
-        <p className="mt-4 text-lg z-10 relative text-white animate__animated animate__fadeIn animate__delay-1s">
-          Learn, grow, and succeed with our top-notch courses designed to accelerate your career!
-        </p>
-      </header>
 
-      {/* Courses Section */}
-      <section className="py-12 px-6 md:px-12 bg-gray-900">
+        {/* Pattern background */}
+      <img
+        src={pattern}
+        alt="background pattern"
+        className="pointer-events-none absolute top-0 left-0 w-full h-full object-cover opacity-10 z-0"
+      />
+      <h1 className="text-3xl md:text-4xl font-bold mb-2">Explore Our Courses</h1>
+      <p className="mb-6 text-gray-300 max-w-xl">
+        Learn from industry professionals and gain hands-on experience in
+        technology, design, and development. Find your next skill today!
+      </p>
 
-        {isLoading ? (
-          <p className="text-center text-gray-400">Loading courses...</p>
-        ) : courses.length === 0 ? (
-          <ComingSoon />
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {courses.map((course) => (
-              <div
-                key={course.id}
-                className="px-3 py-3 bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
-              >
-                <img
-                  src={course.image}
-                  alt={course.title}
-                  className="w-full h-48 object-cover bg-gray-400/20 rounded-xl"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-white">{course.title}</h3>
-                  <p className="text-gray-400 mt-2">{course.description}</p>
-                  <a
-                    href={course.courseUrl}
-                    className="mt-4 inline-block py-2 px-4 bg-blue-600 rounded-full text-white hover:bg-blue-700 transition-colors duration-300"
-                  >
-                    Watch Course →
-                  </a>
-                </div>
-              </div>
-            ))}
+      {/* Search Bar */}
+      <div className="mb-10 max-w-lg">
+        <form
+          onSubmit={handleSubmit}
+          className="flex overflow-hidden rounded-md bg-[#171723]"
+        >
+          <input
+            onChange={handleChange}
+            value={searchTerm}
+            type="text"
+            placeholder="Search courses..."
+            className="flex-grow px-4 py-3 bg-transparent text-white focus:outline-none"
+          />
+          <button
+            type="submit"
+            className="px-5 py-3 bg-blue-600 hover:bg-blue-700 transition disabled:bg-blue-600/60"
+            disabled={!searchTerm.trim()}
+          >
+            Search
+          </button>
+        </form>
+
+        {/* Search Info */}
+        {isSearching && (
+          <div className="py-6 flex items-center gap-4">
+            <p>
+              {filteredCourses.length} result
+              {filteredCourses.length !== 1 ? "s" : ""} for{" "}
+              <span className="font-bold text-red-300">{searchVal}</span>
+            </p>
+            <button
+              onClick={handleShowAll}
+              className="underline text-blue-400 hover:text-blue-600"
+            >
+              Show All
+            </button>
           </div>
         )}
-      </section>
-    </div>
+      </div>
+
+      {/* Course Grid */}
+      <h2 className="text-xl font-semibold mb-6">Available Courses:</h2>
+
+      {(isLoading || courses.length === 0) && (
+        <LoadingSpinner title="Courses" />
+      )}
+
+      <div className="flex flex-wrap gap-5">
+        {(isSearching ? filteredCourses : currentCourses).map((course: any, i: number) => (
+          <a href={course.link} key={course._id || i} target="_blank" rel="noopener noreferrer">
+            <CourseCard
+              title={course.title}
+              instructor={course.instructor}
+              sypnosis={course.sypnosis}
+              ratings={course.rating}
+              price={course.price}
+              discount={course.discount}
+              tags={course.tage || course.tags}
+              link={course.link}
+              thumbnail={course.thumbnail}
+            />
+          </a>
+        ))}
+      </div>
+
+      {/* Pagination */}
+      {!isSearching && courses.length > 0 && (
+        <div className="flex justify-center items-center gap-4 mt-8">
+          <button
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+            className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 disabled:opacity-50"
+          >
+            Previous
+          </button>
+          <span className="text-lg font-medium">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 disabled:opacity-50"
+          >
+            Next
+          </button>
+        </div>
+      )}
+    </section>
   );
 };
 
-export default CoursePage;
+export default Courses;

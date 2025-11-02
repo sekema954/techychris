@@ -19,6 +19,7 @@ const sendEmailToSubscribers = require('./routes/admin/sendemail');
 const postComments = require('./routes/user/comments');
 const sendContact = require('./routes/admin/contact');
 const uploadRoute = require('./routes/uploads');
+const getCourses = require('./routes/user/courses');
 
 const app = express();
 const PORT = process.env.PORT || 3100;
@@ -49,6 +50,7 @@ app.use('/api', deleteBlog);
 app.use('/api', subscribeEmails);
 app.use('/api', postComments);
 app.use('/api', uploadRoute);
+app.use('/api', getCourses);
 
 //Admin Routes
 app.use('/api', adminRegister );

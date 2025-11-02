@@ -42,6 +42,7 @@ const Navbar = () => {
     { id: 2, title: 'Services', path: '/services' },
     { id: 3, title: 'Blog', path: '/blog' },
     { id: 4, title: 'Videos', path: '/videos' },
+    //{ id:5, title:"Courses", path:'/courses'},
   ];
 
   const handleNavClick = () => setMenuOpen(false);

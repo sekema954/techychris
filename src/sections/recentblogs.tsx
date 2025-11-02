@@ -5,6 +5,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { LoadingSpinner } from "../components/loading";
 import { blogsHeader, SectionHeader } from "../components/sectionHeader";
+import pattern from '../assets/images/Frame.png'
+
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -66,7 +68,12 @@ const RecentBlogs = () => {
     );
 
   return (
-  <div className="min-h-screen flex flex-col bg-[#0D0F1A] lg:px-30">
+  <div className="relative min-h-screen flex flex-col bg-[#0D0F1A] lg:px-30">
+       <img
+        src={pattern}
+        alt="background pattern"
+        className="pointer-events-none absolute top-0 left-0 w-full h-full object-cover opacity-10 z-0"
+      />
     <section className="py-12 flex-grow w-full px-4 sm:px-6 max-w-[1600px]">
         <div className="text-white">
               {blogsHeader.map((s, _)=>(
