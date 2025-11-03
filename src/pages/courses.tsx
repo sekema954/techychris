@@ -124,6 +124,17 @@ const Courses = () => {
         <LoadingSpinner title="Courses" />
       )}
 
+      {/* No Courses Available */}
+      {!isLoading && courses.length <= 0 && (
+        <div className="w-full text-center">
+          <h2 className="text-2xl font-semibold mb-3">Courses Coming Soon!</h2>
+          <p className="text-gray-300 max-w-md mx-auto">
+            Our team is currently working hard to bring you the best learning experiences.  
+            Check back soon for exciting new courses!
+          </p>
+        </div>
+      )}
+
       <div className="flex flex-wrap gap-5">
         {(isSearching ? filteredCourses : currentCourses).map((course: any, i: number) => (
           <a href={course.link} key={course._id || i} target="_blank" rel="noopener noreferrer">

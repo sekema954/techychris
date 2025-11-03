@@ -73,7 +73,7 @@ const VideoBackground = () => {
         playsInline
         className="absolute inset-0 object-cover w-full h-full z-0"
       >
-        <source src={"https://storage.cloud.google.com/video_bucket_20/Website%20testimonials%20correction.mp4"} type="video/mp4" />
+        <source src={"https://storage.googleapis.com/video_bucket_20/Website%20testimonials%20correction.mp4"} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
