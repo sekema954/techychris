@@ -30,8 +30,11 @@ const Subscribe = () => {
     }
 
     try {
+      const url = import.meta.env.PROD
+      ? import.meta.env.VITE_PROD_URL
+      : import.meta.env.VITE_DEV_URL
       const res = await fetch(
-        "http://localhost:3000/api/post/emails",
+        url,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
