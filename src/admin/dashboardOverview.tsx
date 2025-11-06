@@ -1,5 +1,6 @@
 import useFetchBlogs from "../api/fetchblogs";
 import { useFetchSubscribers } from "../api/useFetchSubscribers";
+import { useFetchCourses } from "../api/fetchcourses";
 import { useState } from "react";
 import PatchNotesPopup from "../components/patchPopup";
 interface Blog {
@@ -23,6 +24,7 @@ const DashboardOverview: React.FC<DashboardOverviewProps> = ({
 }) => {
   const { blogs } = useFetchBlogs();
   const { subscribers, isLoading } = useFetchSubscribers();
+  const { courses} = useFetchCourses();
 
   // Patch notes to show
   const patches = [
@@ -65,11 +67,15 @@ const DashboardOverview: React.FC<DashboardOverviewProps> = ({
             )}
           </div>
 
-          {/* Products */}
+          {/* Courses */}
           <div className="bg-gray-800 p-6 rounded shadow">
             <h3 className="text-xl font-semibold">Courses</h3>
-            {/* Always show skeleton loader since no products yet */}
-            <div className="h-8 w-16 bg-gray-600 animate-pulse rounded mt-2" />
+            {courses.length <= 0 ? (
+              <div className="h-8 w-16 bg-gray-600 animate-pulse rounded mt-2" />
+            ):(
+              <p className="text-3xl mt-2">{subscribers.length}</p>
+            )}
+           
           </div>
         </div>
 

@@ -48,10 +48,14 @@ const AdminBlogs = () => {
     setUploadingField(field);
 
     try {
+      
       const formDataUpload = new FormData();
       formDataUpload.append("file", file);
+       const url = import.meta.env.MODE === 'development' 
+      ? import.meta.env.VITE_PROD_URL 
+      : import.meta.env.VITE_DEV_URL;
 
-      const response = await fetch(`${import.meta.env.VITE_HEROKU_URL}/api/upload`, {
+      const response = await fetch(`${url}/api/upload`, {
         method: "POST",
         body: formDataUpload,
       });
@@ -85,15 +89,18 @@ const AdminBlogs = () => {
     };
 
     try {
+       const url = import.meta.env.MODE === 'development' 
+      ? import.meta.env.VITE_PROD_URL 
+      : import.meta.env.VITE_DEV_URL;
       let response;
       if (isEditing && editId) {
-        response = await fetch(`${import.meta.env.VITE_HEROKU_URL}/api/update/blogs/${editId}`, {
+        response = await fetch(`${url}/api/update/blogs/${editId}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
       } else {
-        response = await fetch(`${import.meta.env.VITE_HEROKU_URL}/api/post/blogs`, {
+        response = await fetch(`${url}/api/post/blogs`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
@@ -148,7 +155,10 @@ const AdminBlogs = () => {
 
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_HEROKU_URL}/api/delete/blogs/${_id}`, {
+       const url = import.meta.env.MODE === 'development' 
+      ? import.meta.env.VITE_PROD_URL 
+      : import.meta.env.VITE_DEV_URL;
+      const response = await fetch(`${url}/api/delete/blogs/${_id}`, {
         method: "DELETE",
       });
       if (!response.ok) {

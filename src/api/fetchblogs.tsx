@@ -46,11 +46,11 @@ const useFetchBlogs = () => {
   const [error, setError] = useState<string | null>(null);
 
   const fetchBlogs = async () => {
-    {/**const url = import.meta.env.PROD
-      ? `${import.meta.env.VITE_HEROKU_URL}/api/blogs`
-      : "http://localhost:3000/api/blogs"; //endpoint{**/}
+ const url = import.meta.env.MODE === 'development' 
+      ? import.meta.env.VITE_PROD_URL 
+      : import.meta.env.VITE_DEV_URL;
     try {
-      const response = await fetch("https://www.techychris.com/api/get/blogs", {
+      const response = await fetch(`${url}/api/get/blogs`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
