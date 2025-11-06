@@ -11,11 +11,11 @@ export const useFetchCourses = () => {
         const fetchCourses = async () => {
             try{
                 setLoading(true);
-                const url = import.meta.env.MODE === 'development' 
-                ? `${import.meta.env.VITE_DEV_URL}/api/courses`
-                : `${import.meta.env.VITE_PROD_URL}/api/courses`
+                //const url = import.meta.env.MODE === 'development' 
+                //? `${import.meta.env.VITE_DEV_URL}/api/courses`
+               // : `${import.meta.env.VITE_PROD_URL}/api/courses`
 
-                const response = await fetch(url, {
+                const response = await fetch("", {
                     method:'GET',
                     headers:{
                         'Content-Type':'application/json'
