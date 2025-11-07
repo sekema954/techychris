@@ -21,8 +21,8 @@ const Footer = () => {
         <div className="mb-6 sm:mb-0">
           <h4 className="text-lg font-semibold mb-2">ABOUT</h4>
           <ul className="space-y-1 text-sm text-gray-300">
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a aria-label="techy chris services, about page" href="/services">About</a></li>
+            <li><a target="_blank" aria-label="techy chris contact link" href="https://docs.google.com/forms/d/e/1FAIpQLSdcdfZ7zEQgINwQl3mK1hJ0sbmzaalU-I9YrjkItsBzcryD_Q/viewform">Contact</a></li>
           </ul>
         </div>
 
@@ -30,9 +30,9 @@ const Footer = () => {
         <div className="mb-6 sm:mb-0">
           <h4 className="text-lg font-semibold mb-2">RESOURCES</h4>
           <ul className="space-y-1 text-sm text-gray-300">
-            <li><a href="/privacy">Privacy Policy</a></li>
-            <li><a href="/videos">Videos</a></li>
-            <li><a href="/blogs">Blogs</a></li>
+            <li><a aria-label="techy chris privacy policy" href="/privacy">Privacy Policy</a></li>
+            <li><a aria-label="techy chris videos" href="/videos">Videos</a></li>
+            <li><a aria-label="techy chris blogs" href="/blog">Blogs</a></li>
           </ul>
         </div>
 

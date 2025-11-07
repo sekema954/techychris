@@ -143,7 +143,7 @@ const Navbar = () => {
           )}
 
           {/* Contact Button */}
-          <a href="/contact">
+          <a target='_blank' aria-label='techy chris contact ' href="https://docs.google.com/forms/d/e/1FAIpQLSdcdfZ7zEQgINwQl3mK1hJ0sbmzaalU-I9YrjkItsBzcryD_Q/viewform">
             <button className="px-5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 transition-all">
               Contact
             </button>
