@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import profile from '../assets/images/heroimage.png';
+import profile from '../assets/images/heroimage.webp';
 import Divider from '../components/divider';
 
 import { Briefcase, GraduationCap, ShieldCheck, Server } from 'lucide-react';
@@ -55,6 +55,7 @@ const About = () => {
           className="w-full h-full max-h-[637px] relative rounded-xl overflow-hidden"
         >
           <img
+            loading='lazy'
             src={profile}
             alt="Chris Quashie Profile"
             className="w-full h-full object-cover rounded-xl shadow-2xl ring-2 ring-blue-600 transition-transform duration-300 hover:scale-105"

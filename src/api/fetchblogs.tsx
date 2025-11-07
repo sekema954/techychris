@@ -46,9 +46,9 @@ const useFetchBlogs = () => {
   const [error, setError] = useState<string | null>(null);
 
   const fetchBlogs = async () => {
- const url = import.meta.env.MODE === 'development' 
-      ? import.meta.env.VITE_PROD_URL 
-      : import.meta.env.VITE_DEV_URL;
+  const url = import.meta.env.MODE === 'development' 
+        ? import.meta.env.VITE_DEV_URL 
+        : import.meta.env.VITE_PROD_URL;
     try {
       const response = await fetch(`${url}/api/get/blogs`, {
         method: "GET",

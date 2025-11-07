@@ -9,6 +9,6 @@ export default defineConfig({
     tailwindcss(),
   ],
   build:{
-    chunkSizeWarningLimit: 1600,
+    chunkSizeWarningLimit: 3000,
   },
 })

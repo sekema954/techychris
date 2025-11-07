@@ -11,9 +11,9 @@ export const useFetchSubscribers = () => {
 
   const fetchSubscribers = async () => {
     try {
-      const url = import.meta.env.MODE === 'development' 
-      ? import.meta.env.VITE_PROD_URL 
-      : import.meta.env.VITE_DEV_URL;
+        const url = import.meta.env.MODE === 'development' 
+        ? import.meta.env.VITE_DEV_URL 
+        : import.meta.env.VITE_PROD_URL;
       setLoading(true);
       const response = await fetch(`${url}/api/get/emails`, {
         method: 'GET',
