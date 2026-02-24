@@ -15,7 +15,7 @@ const YoutubeVideos = () => {
   const [filteredVideos, setFilteredVideos] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
-  const [isLoading, setIsLoading] = useState(true); // ✅ Added isLoading state
+  const [isLoading, setIsLoading] = useState(true);
 
   const videosPerPage = 6;
 
@@ -25,7 +25,7 @@ const YoutubeVideos = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        setIsLoading(true); // ✅ Start loading
+        setIsLoading(true); 
         const channelRes = await fetch(
           `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${CHANNEL_ID}&key=${API_KEY}`
         );
@@ -39,10 +39,10 @@ const YoutubeVideos = () => {
 
         setVideos(videosData.items);
         setFilteredVideos(videosData.items);
-        setIsLoading(false); // ✅ End loading
+        setIsLoading(false); 
       } catch (error) {
         console.error('Failed to fetch YouTube videos:', error);
-        setIsLoading(false); // ✅ Stop loading on error
+        setIsLoading(false); 
       }
     };
 

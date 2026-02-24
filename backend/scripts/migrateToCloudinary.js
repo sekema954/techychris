@@ -27,7 +27,7 @@ async function migrateImages() {
           public_id: `thumbnail_${blog._id}`,
         });
         updates.thumbnail = result.secure_url;
-        console.log(`✅ Thumbnail migrated for ${blog.title}`);
+        console.log(`Thumbnail migrated for ${blog.title}`);
       }
 
       if (blog.hero_image?.startsWith("http://techychris")) {
@@ -36,7 +36,7 @@ async function migrateImages() {
           public_id: `hero_${blog._id}`,
         });
         updates.hero_image = result.secure_url;
-        console.log(`✅ Hero migrated for ${blog.title}`);
+        console.log(`Hero migrated for ${blog.title}`);
       }
 
       if (Object.keys(updates).length > 0) {
