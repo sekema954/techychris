@@ -24,8 +24,13 @@ const getCourses = require('./routes/user/courses');
 const app = express();
 const PORT = process.env.PORT || 3100;
 
-app.use(cors());
-app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
+app.use(cors({
+  origin: ["http://localhost:5173", "https://www.techychris.com"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
+app.options("/*splat", cors());app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
 app.use(express.json());
 
 //Connect to mongodb

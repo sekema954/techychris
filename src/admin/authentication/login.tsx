@@ -22,7 +22,7 @@ const AdminLogin = () => {
     e.preventDefault();
   
     try {
-      const res = await fetch('https://techychris-e3f874ff6641.herokuapp.com/api/admin/login', {
+      const res = await fetch('https://www.techychris.com/api/admin/login', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

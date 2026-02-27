@@ -47,7 +47,7 @@ const AdminRegister = () => {
     }
 
     try {
-      const res = await fetch('https://techychris-e3f874ff6641.herokuapp.com/api/admin/register', {
+      const res = await fetch('https://www.techychris.com/api/admin/register', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
