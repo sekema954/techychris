@@ -1,6 +1,6 @@
 import { Wallpoet } from "../constants/fonts";
 import Divider from "./divider";
-import logo from '../assets/images/logo.png';
+import logo from '../assets/images/logo2-syBgQrWc.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 

@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
-import logo from '../assets/images/logo.png';
+import logo from '../assets/images/logo2-syBgQrWc.png';
 import { useLocation } from 'react-router-dom';
 import { Socials } from '../constants/socials';
 import { useEffect, useState, useRef } from 'react';
