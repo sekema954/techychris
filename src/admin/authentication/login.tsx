@@ -22,7 +22,10 @@ const AdminLogin = () => {
     e.preventDefault();
   
     try {
-      const res = await fetch('https://www.techychris.com/api/admin/login', {
+     const baseUrl = import.meta.env.PROD
+      ? import.meta.env.VITE_PROD_URL
+      : import.meta.env.VITE_DEV_URL;
+      const res = await fetch(`${baseUrl}/api/admin/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

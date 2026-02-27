@@ -47,7 +47,8 @@ const AdminRegister = () => {
     }
 
     try {
-      const res = await fetch('https://www.techychris.com/api/admin/register', {
+      const baseUrl = import.meta.env.PROD ? import.meta.env.VITE_PROD_URL : import.meta.env.VITE_DEV_URL
+      const res = await fetch(`${baseUrl}/api/admin/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

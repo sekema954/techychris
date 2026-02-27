@@ -36,7 +36,7 @@ app.use(helmet());
 // CORS
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://www.techychris.com"],
+    origin: ["http://localhost:5173", "http://localhost:3100", "https://www.techychris.com"],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
