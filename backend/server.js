@@ -34,18 +34,7 @@ const PORT = process.env.PORT || 3100;
 // server.js
 app.use(
   helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: ["'self'"],
-        styleSrc: ["'self'", "'unsafe-inline'"],
-        imgSrc: ["'self'", "blob:"], // allow blob textures
-        connectSrc: ["'self'", "blob:"], // allow fetch to blob URLs
-        fontSrc: ["'self'"],
-        objectSrc: ["'none'"],
-        upgradeInsecureRequests: [],
-      },
-    },
+  contentSecurityPolicy: false
   })
 );
 
