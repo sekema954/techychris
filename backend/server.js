@@ -31,7 +31,23 @@ const PORT = process.env.PORT || 3100;
 /* ------------------- MIDDLEWARE ------------------- */
 
 // Security headers
-app.use(helmet());
+// server.js
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'", "blob:"], // allow blob textures
+        connectSrc: ["'self'", "blob:"], // allow fetch to blob URLs
+        fontSrc: ["'self'"],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [],
+      },
+    },
+  })
+);
 
 // CORS
 app.use(
@@ -82,26 +98,42 @@ app.use('/api', sendContact);
 
 /* ------------------- HEALTH CHECK ------------------- */
 app.get('/health', (req, res) => {
-  const uptime = process.uptime(); // seconds
-  const memoryUsage = process.memoryUsage(); // in bytes
+  const uptimeSeconds = process.uptime(); // seconds
+  const memoryUsage = process.memoryUsage(); // bytes
   const loadAvg = os.loadavg(); // 1,5,15 min averages
   const freeMem = os.freemem();
   const totalMem = os.totalmem();
   const usedMem = totalMem - freeMem;
 
+  // Convert seconds to HH:MM:SS
+  const formatUptime = (seconds) => {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = Math.floor(seconds % 60);
+    return `${h}h ${m}m ${s}s`;
+  };
+
+  // Convert bytes to human-readable
+  const formatBytes = (bytes) => {
+    const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
+    if (bytes === 0) return '0 B';
+    const i = Math.floor(Math.log(bytes) / Math.log(1024));
+    return `${(bytes / Math.pow(1024, i)).toFixed(2)} ${sizes[i]}`;
+  };
+
   res.json({
     status: 'OK',
-    uptime: `${Math.floor(uptime)}s`,
+    uptime: formatUptime(uptimeSeconds),
     memory: {
-      rss: memoryUsage.rss,
-      heapTotal: memoryUsage.heapTotal,
-      heapUsed: memoryUsage.heapUsed,
-      external: memoryUsage.external,
-      totalMem,
-      usedMem,
-      freeMem
+      rss: formatBytes(memoryUsage.rss),
+      heapTotal: formatBytes(memoryUsage.heapTotal),
+      heapUsed: formatBytes(memoryUsage.heapUsed),
+      external: formatBytes(memoryUsage.external),
+      totalMem: formatBytes(totalMem),
+      usedMem: formatBytes(usedMem),
+      freeMem: formatBytes(freeMem),
     },
-    loadAvg,
+    loadAvg: loadAvg.map((n) => n.toFixed(2)), // optional rounding
     timestamp: new Date().toISOString()
   });
 });
@@ -124,4 +156,5 @@ const writeData = (filePath, data) => {
 /* ------------------- START SERVER ------------------- */
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`check server health at http://localhost:${PORT}/health`)
 });
